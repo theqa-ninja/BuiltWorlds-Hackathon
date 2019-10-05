@@ -1,4 +1,5 @@
-import { extractGPSAsArray } from './exif';
+import { extractExif } from './exif';
+import { images, clusters } from '../models';
 import axios from 'axios';
 import asyncPool from "tiny-async-pool";
 
@@ -32,26 +33,34 @@ const processVision = async (image) => {
 }
 
 const processExifAndVision = async (image) => {
-  const { link:metadataLink, name, token } = image;
-  // TODO: Create Image Document
+  const { link:metadataLink, name, token, sessionId} = image;
 
   try {
     const url = await fetchImageMetaData(metadataLink, token);
     const image = await fetchImage(url, token);
 
-    const [lla, tags ] = await Promise.all([
-      extractGPSAsArray(image),
+    const [exif, tags ] = await Promise.all([
+      extractExif(image),
       processVision(image)
     ]);
 
+    // images.create({
+    //   name,
+    //   latitude: exif.altitude,
+    //   longitude: exif.longitude,
+    //   altitude: exif.altitude,
+    //   session_id: sessionId,
+    //   url,
+    //   created_at:
+    // })
+
     // TODO: Save to DB
-    console.log(lla, tags);
+    // console.log(exif, tags);
 
     return {
       imageId: null,
       name,
-      lla,
-      tags
+      exif
     };
   } catch (e) {
     console.error(e);
@@ -59,12 +68,15 @@ const processExifAndVision = async (image) => {
   }
 }
 
-const processImages = async (images, token=null) => {
+const processImages = async (images, sessionId, token=null) => {
   images = images.map((img) => {
     const image = Object.assign({}, img);
     image.token = token;
+    image.sessionId = sessionId;
     return image;
   })
+
+  images = [images[0]];
 
   const payload = await asyncPool(3, images, processExifAndVision);
 
