@@ -1,9 +1,12 @@
+import axios from 'axios';
 import { ExifImage } from 'exif';
+
 const exifImage = (image) => {
   return new Promise((resolve, reject) => {
     new ExifImage({
-      image
+      image 
     }, (err, data) => {
+      console.log(err, data);
       if (err) {
         return reject(err);
       } else {
@@ -34,26 +37,52 @@ const parseGPS = (gpsExif) => {
   }
 }
 
-const extractExif = async () => {
-  try {
-    const image = await exifImage('/home/danielyuan/Downloads/2.jpg');
-
-    if (image && image.gps && image.gps.GPSLatitude && image.gps.GPSLongitude && image.gps.GPSAltitude) {
-      return parseGPS(image.gps);
-    }
-    return null;
-  } catch (e) {
-    console.log('error happened');
-    console.log(e);
-  }
-};
-
 class Exif {
   constructor(url) {
     this.url = url;
-    console.log(this.url)
   }
 
+  async extractGPS() {
+    try {
+      const exif = await this._fetchImage();
+      if (exif && exif.gps && exif.gps.GPSLatitude && exif.gps.GPSLongitude && exif.gps.GPSAltitude) {
+        this.lla =  parseGPS(image.gps);
+        return this.lla;
+      }
+      return null;
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
+  }
+
+  async extractGPSAsArray() {
+    const lla = this.extractGPS();
+
+    if (lla) {
+      return [lla.latitude, lla.longitude, lla.altitude];
+    }
+    return null;
+
+  }
+
+  async _fetchImage() {
+    try {
+      const response = await axios.get(this.url, {
+        responseType: 'arraybuffer',
+        headers: {
+          // 'Range': 'bytes=0-100'
+        }
+      });
+
+      this.image = response.data;
+      this.exif = await exifImage(this.image);
+      return this.exif;
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  }
 }
 
 export default Exif;
