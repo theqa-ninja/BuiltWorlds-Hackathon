@@ -1,7 +1,7 @@
 import express from 'express';
-import cookieSession from 'cookie-session';
 import bodyParser from 'body-parser';
 import session from 'express-session';
+import proxy from 'express-http-proxy';
 
 import routes from './routes';
 
@@ -31,11 +31,7 @@ app.use(function (req, res, next) {
   next()
 });
 
-
-app.get('/', (req, res) => {
-  res.send("Hello");
-})
-
 app.use('/api', routes);
+app.use('/', proxy('http://localhost:8080'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
