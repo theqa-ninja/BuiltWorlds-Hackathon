@@ -8,7 +8,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      filename: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       latitude: {
@@ -21,16 +22,30 @@ module.exports = {
         type: Sequelize.FLOAT
       },
       session_id: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
+      },
+      cluster_id: {
+        type: Sequelize.INTEGER
+      },
+      isDeleted: {
+        defaultValue: false,
+        type: Sequelize.BOOLEAN
       },
       url: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
-      created_at: {
-        type: Sequelize.DATE
+      make: {
+        type: Sequelize.TEXT
+      },
+      model: {
+        type: Sequelize.TEXT
       },
       exif: {
         type: Sequelize.JSON
+      },
+      created_at: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
