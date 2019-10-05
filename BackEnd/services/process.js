@@ -49,6 +49,7 @@ const processExifAndVision = async (image) => {
 
     return {
       imageId: null,
+      name,
       lla,
       tags
     };
