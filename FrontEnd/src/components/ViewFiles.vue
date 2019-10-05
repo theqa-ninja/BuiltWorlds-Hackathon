@@ -40,15 +40,15 @@ export default {
       remove: "Remove",
       imageJson: [],
       counter: 0,
-      deleted: "Deleted!"
+      deleted: "Deleted!",
       imageJson: [],
-      counter: 0,
+      counter: 0
     };
   },
   methods: {
     clickHandler(item) {
       item.selected = !item.selected;
-      console.log(item.selected)
+      console.log(item.selected);
       event.target.classList.toggle("selected");
       this.countSelectedItems();
     },
@@ -64,12 +64,12 @@ export default {
       });
       document.querySelector(".deleted").classList.remove("hide");
     },
-    countSelectedItems(){
+    countSelectedItems() {
       let count = 0;
-      this.imageJson.forEach( (image) => {
-        count += image.selected
+      this.imageJson.forEach(image => {
+        count += image.selected;
       });
-      this.counter = count
+      this.counter = count;
     }
   },
   computed: {
