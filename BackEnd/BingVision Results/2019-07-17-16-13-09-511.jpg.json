@@ -1,0 +1,84 @@
+{
+  "categories": [
+      {
+          "name": "others_",
+          "score": 0.0078125
+      },
+      {
+          "name": "object_screen",
+          "score": 0.91796875
+      }
+  ],
+  "description": {
+      "tags": [
+          "indoor",
+          "sitting",
+          "table",
+          "building",
+          "luggage",
+          "large",
+          "room",
+          "suitcase",
+          "bed",
+          "white",
+          "parked",
+          "man",
+          "standing"
+      ],
+      "captions": [
+          {
+              "text": "a large room",
+              "confidence": 0.7011152870626689
+          }
+      ]
+  },
+  "requestId": "592b65f9-f5c8-4c10-9c5f-3690c55b76b3",
+  "metadata": {
+      "width": 1024,
+      "height": 768,
+      "format": "Jpeg"
+  },
+  "parameters": [
+    {
+      "categories": [
+          {
+              "name": "others_",
+              "score": 0.0078125
+          },
+          {
+              "name": "object_screen",
+              "score": 0.91796875
+          }
+      ],
+      "description": {
+          "tags": [
+              "indoor",
+              "sitting",
+              "table",
+              "building",
+              "luggage",
+              "large",
+              "room",
+              "suitcase",
+              "bed",
+              "white",
+              "parked",
+              "man",
+              "standing"
+          ],
+          "captions": [
+              {
+                  "text": "a large room",
+                  "confidence": 0.7011152870626689
+              }
+          ]
+      },
+      "requestId": "592b65f9-f5c8-4c10-9c5f-3690c55b76b3",
+      "metadata": {
+          "width": 1024,
+          "height": 768,
+          "format": "Jpeg"
+      }
+    }
+  ]
+}
