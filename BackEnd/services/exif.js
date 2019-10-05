@@ -37,9 +37,9 @@ const parseGPS = (gpsExif) => {
   }
 }
 
-const extractExifs = async (urls) => {
+const extractExifs = async (urls, token=null) => {
   const extractLLA = async (url) => {
-    const exif = new Exif(url);
+    const exif = new Exif(url, token);
     return await exif.extractGPSAsArray();
   };
 
@@ -49,6 +49,7 @@ const extractExifs = async (urls) => {
 class Exif {
   constructor(url, token=null) {
     this.url = url;
+    this.token = token;
   }
 
   async extractGPS() {
@@ -80,11 +81,16 @@ class Exif {
 
   async _fetchImage() {
     try {
+      const headers = {
+        // 'Range': 'bytes=0-100'
+      };
+
+      if (this.token)
+        headers['Authorization'] = `bearer ${this.token}`;
+
       const response = await axios.get(this.url, {
         responseType: 'arraybuffer',
-        headers: {
-          // 'Range': 'bytes=0-100'
-        }
+        headers
       });
 
       this.image = response.data;
