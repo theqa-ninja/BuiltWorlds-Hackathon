@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import store from "./store";
 export default {
   name: "Home",
   data() {
@@ -28,12 +29,13 @@ export default {
     };
   },
   methods: {
-    submitForm: function(msg, e) {
-      e.preventDefault();
-      document.querySelector("home").classList.add("hide");
-      document.querySelector("view-files").classList.remove("hide");
-      return false;
-    }
+    submitForm(){
+      event.preventDefault();
+      console.log(this.$store)
+      this.$store.commit('submitted', true);
+    },
+  },
+  mounted(){
   }
 };
 </script>
