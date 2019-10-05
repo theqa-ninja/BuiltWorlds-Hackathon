@@ -25,7 +25,7 @@ const app = new Vue({
     console.log(kMeans([[45,64], [56,98], [23,44], [1,2], [4,55]],3, 12));
   },
   template: 
-    '<v-link :href=this.currentRoute></v-link>'
+    ''
 
 });
 
