@@ -1,5 +1,3 @@
-import axios from 'axios';
-import asyncPool from "tiny-async-pool";
 import { ExifImage } from 'exif';
 
 const exifImage = (image) => {
@@ -33,7 +31,7 @@ const parseGPS = (gpsExif) => {
   return {
     longitude: convertDMSToDD(gpsExif.GPSLongitude, gpsExif.GPSLongitudeRef),
     latitude: convertDMSToDD(gpsExif.GPSLatitude, gpsExif.GPSLatitudeRef),
-    altitude: gpsExif.GPSAltitude - gpsExif.GPSAltitudeRef
+    altitude: gpsExif.GPSAltitude - gpsExif.GPSAltitudeRef ? gpsExif.GPSAltitudeRef : 0
   }
 }
 
@@ -46,6 +44,7 @@ const extractGPSAsArray = async (image) => {
     }
     return null;
   } catch (e) {
+    console.error(e);
     return null;
   }
 }
