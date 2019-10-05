@@ -20,6 +20,3 @@
 
 ## Heroku notes
 create DB `heroku addons:create heroku-postgresql -a builtworldhack`
-reset the DB `heroku pg:reset -a builtworldhack`
-migrate the DB `heroku run rake db:migrate -a builtworldhack`
-seed the DB `heroku run rake db:seed -a builtworldhack`
