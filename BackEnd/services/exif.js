@@ -1,8 +1,11 @@
+import axios from 'axios';
+import asyncPool from "tiny-async-pool";
 import { ExifImage } from 'exif';
+
 const exifImage = (image) => {
   return new Promise((resolve, reject) => {
     new ExifImage({
-      image
+      image 
     }, (err, data) => {
       if (err) {
         return reject(err);
@@ -34,26 +37,72 @@ const parseGPS = (gpsExif) => {
   }
 }
 
-const extractExif = async () => {
-  try {
-    const image = await exifImage('/home/danielyuan/Downloads/2.jpg');
+const extractExifs = async (urls, token=null) => {
+  const extractLLA = async (url) => {
+    const exif = new Exif(url, token);
+    return await exif.extractGPSAsArray();
+  };
 
-    if (image && image.gps && image.gps.GPSLatitude && image.gps.GPSLongitude && image.gps.GPSAltitude) {
-      return parseGPS(image.gps);
-    }
-    return null;
-  } catch (e) {
-    console.log('error happened');
-    console.log(e);
-  }
-};
-
-class Exif {
-  constructor(url) {
-    this.url = url;
-    console.log(this.url)
-  }
-
+  return await asyncPool(3, urls, extractLLA);
 }
 
-export default Exif;
+class Exif {
+  constructor(url, token=null) {
+    this.url = url;
+    this.token = token;
+  }
+
+  async extractGPS() {
+    if (this.lla)
+      return this.lla;
+
+    try {
+      const exif = await this._fetchImage();
+      if (exif && exif.gps && 'GPSLatitude' in exif.gps && 'GPSLongitude' in exif.gps && 'GPSAltitude' in exif.gps) {
+        this.lla =  parseGPS(exif.gps);
+        return this.lla;
+      }
+      return null;
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
+  }
+
+  async extractGPSAsArray() {
+    const lla = await this.extractGPS();
+
+    if (lla) {
+      return [lla.latitude, lla.longitude, lla.altitude];
+    }
+    return null;
+
+  }
+
+  async _fetchImage() {
+    try {
+      const headers = {
+        // 'Range': 'bytes=0-100'
+      };
+
+      if (this.token)
+        headers['Authorization'] = `bearer ${this.token}`;
+
+      const response = await axios.get(this.url, {
+        responseType: 'arraybuffer',
+        headers
+      });
+
+      this.image = response.data;
+      this.exif = await exifImage(this.image);
+      return this.exif;
+    } catch (e) {
+      throw e;
+    }
+  }
+}
+
+export {
+  Exif,
+  extractExifs
+};
