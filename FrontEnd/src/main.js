@@ -1,14 +1,13 @@
-/* eslint-disable */
-
 import Vue from 'vue'
 import routes from './routes'
 import VLink from './components/VLink.vue'
-import { kMeans } from './utility/kMeans'
+import App from './App.vue'
 
 const app = new Vue({
   el: '#app',
   data: {
-    currentRoute: window.location.pathname
+    currentRoute: window.location.pathname,
+    clusters: [],
   },
   computed: {
     ViewComponent() {
@@ -21,11 +20,7 @@ const app = new Vue({
   components: {
     'v-link': VLink,
   },
-  mounted(){
-    console.log(kMeans([[45,64], [56,98], [23,44], [1,2], [4,55]],3, 12));
-  },
-  template: 
-    ''
+  render: h => h(App)
 
 });
 

@@ -2,7 +2,7 @@
   <div 
     class='clusters-container'> 
     <cluster-content 
-      v-for: cluster in clusters>
+      v-for='cluster in clusters'>
     </cluster-content>
   </div>
 </template>
@@ -11,15 +11,18 @@
 
   export default {
     props: {
-      clusters: Array,
     },
     data: () => {
       return {
+        clusters: Array,
       }
     },
     computed: {
     },
     methods: {
+    },
+    mounted(){
+
     }
   }
 </script>
