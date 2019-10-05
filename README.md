@@ -20,3 +20,4 @@
 
 ## Heroku notes
 create DB `heroku addons:create heroku-postgresql -a builtworldhack`
+check DB on heroku `heroku pg:psql -a builtworldhack-back`
