@@ -142,6 +142,11 @@ input[type="text"] {
     max-width: 70%;
     padding: 0.5rem;
     border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+input[type="text"]:focus {
+    border: 1px solid #42b983;
 }
 
 .button {
@@ -177,6 +182,7 @@ input[type="text"] {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    line-height: 1.6;
     margin-top: 60px;
 }
 
