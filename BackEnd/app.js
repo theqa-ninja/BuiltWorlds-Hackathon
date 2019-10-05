@@ -1,12 +1,13 @@
 import express from 'express';
-import cookieSession from 'cookie-session';
 import bodyParser from 'body-parser';
 import session from 'express-session';
+import proxy from 'express-http-proxy';
 
 import routes from './routes';
 
 const app = express();
 const port = process.env.PORT || 3000;
+const VUE_PROXY_URL = process.env.VUE_PROXY_URL || 'http://localhost:8080';
 
 app.use(bodyParser.json());
 
@@ -21,21 +22,18 @@ app.use(function (req, res, next) {
       req.session.credentials = {}
   }
 
-  req.session.credentials['autodesk'] = {
-    access_token: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJ1c2VyaWQiOiJKN1FVSjVUTjhTQVQiLCJleHAiOjE1NzAzMDI3NjUsInNjb3BlIjpbInVzZXItcHJvZmlsZTpyZWFkIiwiZGF0YTpzZWFyY2giLCJkYXRhOnJlYWQiLCJidWNrZXQ6cmVhZCIsImFjY291bnQ6cmVhZCIsInZpZXdhYmxlczpyZWFkIl0sImNsaWVudF9pZCI6ImFVakdBR1FKdlc0ak9qQXA3RHQ0bEFNRVB6Q2ZxYll1IiwiZ3JhbnRfaWQiOiIzOHRSelZCYWVCdkRsNE5XT296UG1ldXU3WXBMRkhneiIsImF1ZCI6Imh0dHBzOi8vYXV0b2Rlc2suY29tL2F1ZC9qd3RleHA2MCIsImp0aSI6IklGdGk5d0NYMEwxUmhOTmJ0d1lqM2U1aEVCVnhURmowcERwUDJ4TDF1cXVBN0t2bWZLQ1NySnJDQU9zVXg5TmMifQ.DMtUsQTV4bS0BYSth1Ie515hKKwq9ObDMDF2P0vOGjE',
-    refresh_token: 'Hg2sGhN77yPtxgNjnRUDa2k8tYJUQFuA6Pcuqtt6Sc',
+  req.session.credentials['autodesk'] = { 
+    access_token: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJ1c2VyaWQiOiJKN1FVSjVUTjhTQVQiLCJleHAiOjE1NzAzMTMyNDgsInNjb3BlIjpbInVzZXItcHJvZmlsZTpyZWFkIiwiZGF0YTpzZWFyY2giLCJkYXRhOnJlYWQiLCJidWNrZXQ6cmVhZCIsImFjY291bnQ6cmVhZCIsInZpZXdhYmxlczpyZWFkIl0sImNsaWVudF9pZCI6ImFVakdBR1FKdlc0ak9qQXA3RHQ0bEFNRVB6Q2ZxYll1IiwiZ3JhbnRfaWQiOiJUNWpkVUNmUUs0NmRwTEh6Zm0yTW9lSEFvQThpaGRWeiIsImF1ZCI6Imh0dHBzOi8vYXV0b2Rlc2suY29tL2F1ZC9qd3RleHA2MCIsImp0aSI6Ik9nSDBCZG8wU2RkUFdOM3FpWURHY3ZhZG5Lamx2SEtCbHduUFRzaXFxbWN1clpoc0NSUG5KYW1xVlNIQWZGMFAifQ.Wr-drAAoA-8OYYd5T29i6J1aqnMngkMOmDxz2BtJUMg',
+    refresh_token: '2QoC4v0BLtV9ACHW8WET812aNzx48B3w53vtK7Ede7',
     token_type: 'Bearer',
     expires_in: 3599,
-    expires_at: '2019-10-05T19:12:44.539Z' }
+    expires_at: '2019-10-05T22:07:27.825Z' 
+  } 
 
   next()
 });
 
-
-app.get('/', (req, res) => {
-  res.send("Hello");
-})
-
 app.use('/api', routes);
+app.use('/', proxy(VUE_PROXY_URL));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

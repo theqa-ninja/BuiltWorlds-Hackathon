@@ -1,0 +1,15 @@
+POST /vision/v2.0/analyze?visualFeatures=Categories,Description,Objects,color,Tags&amp; language=en HTTP/1.1
+Host: westcentralus.api.cognitive.microsoft.com
+Ocp-Apim-Subscription-Key: 2248aa9884c04dc68047687ae198cf1e
+Content-Type: application/json
+User-Agent: PostmanRuntime/7.17.1
+Accept: */*
+Cache-Control: no-cache
+Postman-Token: 43492ea7-7bae-4904-89a2-6d8b49e2e243,bd7c5569-c62b-433e-8b2c-0a756b7ef50d
+Host: westcentralus.api.cognitive.microsoft.com
+Accept-Encoding: gzip, deflate
+Content-Length: 552
+Connection: keep-alive
+cache-control: no-cache
+
+{"url":"https://ucff487c9b45bead7c1a293583f6.previews.dropboxusercontent.com/p/thumb/AAkd086TVQAA2s8V6U-31C5rNZzcLVXMtUVcV-yFFS0H8-EZF0tBectY7XFwaEoHDId9Br96ye7fg9bhlcUb_NFTISM8Ml-l443KEqRaj3D3KL809LgNmUm8pd5y-j-RUgsqiQ2izRvWiFZDkDKiPkqKyYsFmeYo2wq2XULd8VyHtiin4ZFA3m90uGezwfnbKYGs1D902jZe_sas-mIatXfAvaeSDxbeRh7t9mOaBYPJfvSVWJDvA4aeBEujg9lN5F0DtQTupgg1P6iqybMf8TEkzeO5n0zBj1hxtibQ3X99Zm4qplVkldTq7PZDzMuXZk1yNibhNPFDkl50WY3sc0PZu-BdHg_mRL6o4ZjbMEml9_J8D4M-YESLAoU65NX7gJPC_x3o4qtswOZn0dnIgPRFGp2qPkz9W-jBjf_7Rmxz2g/p.jpeg?fv_content=true&size_mode=1"}

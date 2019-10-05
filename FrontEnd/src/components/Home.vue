@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <section class="home">
     <h1>{{ heading }}</h1>
-    <form action="/something" @submit="submitForm" novalidate="true">
+    <form action="/something" method="post" @submit="submitForm" novalidate="true" class="form">
       <label for="fileToUpload">{{ upload }}</label>
       <p>
         <input type="file" name="fileToUpload" id="fileToUpload" />
@@ -11,10 +11,10 @@
         <input type="text" name="url" />
       </p>
       <p>
-        <input type="submit" name="submit" value="submit" />
+        <input type="submit" name="submit" value="submit" class="button" />
       </p>
     </form>
-  </div>
+  </section>
 </template>
 
 <script>

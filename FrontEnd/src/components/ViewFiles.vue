@@ -1,21 +1,23 @@
 <template>
-  <div class="view-files">
+  <section class="view-files">
     <h1>{{ heading }}</h1>
     <p>{{ msg }}</p>
     <p>
-      <input type="submit" />
+      <input type="submit" class="button" />
     </p>
     <div id="gallery">
-      <img
-        v-for="image in imageJson"
-        :src="image.download_url"
-        v-show="!image.selected"
-        alt
-        class="img"
-        @click="clickHandler(image)"
-      />
+      <div class="inner">
+        <img
+          v-for="image in imageJson"
+          :src="image.download_url"
+          v-show="!image.selected"
+          alt
+          class="img"
+          @click="clickHandler(image)"
+        />
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

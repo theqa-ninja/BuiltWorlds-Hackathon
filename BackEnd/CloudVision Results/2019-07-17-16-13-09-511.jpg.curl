@@ -1,0 +1,44 @@
+POST /v1/images:annotate?access_token=ya29.Il-UB5-ZzPv0QLS0Y18TUWx42zuooxApiIMubWIe_b6iBk4XsLOjT_XB8krIqfo2LfYeXnUQ-cEZjhER9zfVBZYSEalPsMRqbjI6xxqKq_HD0PnO9I1gOA3zWTpmAQ2udw HTTP/1.1
+Host: vision.googleapis.com
+Authorization: Bearer ya29.Il-UB5-ZzPv0QLS0Y18TUWx42zuooxApiIMubWIe_b6iBk4XsLOjT_XB8krIqfo2LfYeXnUQ-cEZjhER9zfVBZYSEalPsMRqbjI6xxqKq_HD0PnO9I1gOA3zWTpmAQ2udw
+Content-Type: application/json
+User-Agent: PostmanRuntime/7.17.1
+Accept: */*
+Cache-Control: no-cache
+Postman-Token: cf77f09e-bcd4-4421-a366-4cd1b28c33df,77a25e72-e1a7-4dde-bf28-6629d199da2c
+Host: vision.googleapis.com
+Accept-Encoding: gzip, deflate
+Content-Length: 1063
+Connection: keep-alive
+cache-control: no-cache
+
+{
+  'requests': [
+    {
+      'image': {
+        'source': {
+          'imageUri': 'https://ucff487c9b45bead7c1a293583f6.previews.dropboxusercontent.com/p/thumb/AAkd086TVQAA2s8V6U-31C5rNZzcLVXMtUVcV-yFFS0H8-EZF0tBectY7XFwaEoHDId9Br96ye7fg9bhlcUb_NFTISM8Ml-l443KEqRaj3D3KL809LgNmUm8pd5y-j-RUgsqiQ2izRvWiFZDkDKiPkqKyYsFmeYo2wq2XULd8VyHtiin4ZFA3m90uGezwfnbKYGs1D902jZe_sas-mIatXfAvaeSDxbeRh7t9mOaBYPJfvSVWJDvA4aeBEujg9lN5F0DtQTupgg1P6iqybMf8TEkzeO5n0zBj1hxtibQ3X99Zm4qplVkldTq7PZDzMuXZk1yNibhNPFDkl50WY3sc0PZu-BdHg_mRL6o4ZjbMEml9_J8D4M-YESLAoU65NX7gJPC_x3o4qtswOZn0dnIgPRFGp2qPkz9W-jBjf_7Rmxz2g/p.jpeg?fv_content=true&size_mode=1'
+        }
+      },
+      'features': [
+        {
+          'type': 'LABEL_DETECTION',
+          'maxResults': 5
+        },
+        {
+          'type': 'OBJECT_LOCALIZATION',
+          'maxResults': 5
+        },
+        {
+          'type': 'TEXT_DETECTION',
+          'maxResults': 1,
+          'model': 'builtin/latest'
+        },
+        {
+          'type': 'IMAGE_PROPERTIES',
+          'maxResults': 10
+        }
+      ]
+    }
+  ]
+}
