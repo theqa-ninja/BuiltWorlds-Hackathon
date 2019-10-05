@@ -7,7 +7,6 @@ const exifImage = (image) => {
     new ExifImage({
       image 
     }, (err, data) => {
-      console.log(err, data);
       if (err) {
         return reject(err);
       } else {
@@ -48,7 +47,7 @@ const extractExifs = async (urls) => {
 }
 
 class Exif {
-  constructor(url) {
+  constructor(url, token=null) {
     this.url = url;
   }
 
@@ -58,8 +57,8 @@ class Exif {
 
     try {
       const exif = await this._fetchImage();
-      if (exif && exif.gps && exif.gps.GPSLatitude && exif.gps.GPSLongitude && exif.gps.GPSAltitude) {
-        this.lla =  parseGPS(image.gps);
+      if (exif && exif.gps && 'GPSLatitude' in exif.gps && 'GPSLongitude' in exif.gps && 'GPSAltitude' in exif.gps) {
+        this.lla =  parseGPS(exif.gps);
         return this.lla;
       }
       return null;
