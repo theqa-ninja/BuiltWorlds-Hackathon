@@ -30,8 +30,6 @@ export default {
   methods: {
     submitForm: function(msg, e) {
       e.preventDefault();
-      debugger;
-      console.log(msg);
       document.querySelector("home").classList.add("hide");
       document.querySelector("view-files").classList.remove("hide");
       return false;

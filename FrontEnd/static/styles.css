@@ -88,6 +88,47 @@ a {
     transition: all 1s ease;
 }
 
+#gallery .delete {
+    display: none;
+}
+
+#gallery .deleted.hide {
+    display: none;
+    background: transparent;
+    transition: all .5s ease;
+}
+
+#gallery .deleted {
+    color: transparent;
+    padding: .5rem 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    animation-name: showhide;
+    animation-duration: 5s;
+    animation-direction: normal;
+    animation-iteration-count: 1;
+}
+
+@keyframes showhide {
+    from {
+        color: #222;
+        background: yellow;
+        opacity: 1;
+    }
+
+    to {
+        color: transparent;
+        background: transparent;
+        opacity: 0;
+    }
+}
+
+#gallery.hide-others .delete {
+    display: inline-block;
+}
+
 #gallery.hide-others .img {
     display: none;
 }

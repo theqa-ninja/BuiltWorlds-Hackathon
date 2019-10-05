@@ -4,9 +4,15 @@
     <p>{{ msg }}</p>
     <p>
       <button class="button" @click="hideNotSelected">Toggle Select</button>
+    </p>
+    <p>
       <span class="counter">{{ counter }}</span>
     </p>
     <div id="gallery">
+      <p>
+        <button class="button delete" @click="deleteImages">Delete</button>
+      </p>
+      <p class="deleted hide">{{ deleted }}</p>
       <div class="inner">
         <img
           v-lazyload
@@ -33,7 +39,8 @@ export default {
         "Here are the images you uploaded. Please select the ones you want to remove.",
       url: "Or upload from URL:",
       remove: "Remove",
-      imageJson: null
+      imageJson: null,
+      deleted: "Deleted!"
     };
   },
   methods: {
@@ -43,6 +50,15 @@ export default {
     },
     hideNotSelected: function(item) {
       document.querySelector("#gallery").classList.toggle("hide-others");
+    },
+    deleteImages: function(item) {
+      document.querySelector("#gallery").classList.toggle("hide-others");
+      var selected = document.querySelectorAll(".selected");
+      console.log(selected);
+      Array.prototype.forEach.call(selected, function(el, i) {
+        el.parentNode.removeChild(el);
+      });
+      document.querySelector(".deleted").classList.remove("hide");
     }
   },
   computed: {
