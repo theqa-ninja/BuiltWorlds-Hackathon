@@ -88,6 +88,14 @@ a {
     transition: all 1s ease;
 }
 
+#gallery.hide-others .img {
+    display: none;
+}
+
+#gallery.hide-others .selected {
+    display: inline;
+}
+
 input[type="text"] {
     width: 100%;
     max-width: 70%;

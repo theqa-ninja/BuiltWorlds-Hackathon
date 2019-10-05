@@ -3,13 +3,16 @@
     <h1>{{ heading }}</h1>
     <p>{{ msg }}</p>
     <p>
-      <input type="submit" class="button" />
+      <button class="button" @click="hideNotSelected">Toggle Select</button>
+      <span class="counter">{{ counter }}</span>
     </p>
     <div id="gallery">
       <div class="inner">
         <img
+          v-lazyload
           v-for="image in imageJson"
-          :src="image.download_url"
+          src
+          :data-src="image.download_url"
           v-show="!image.selected"
           alt
           class="img"
@@ -37,6 +40,15 @@ export default {
     clickHandler: function(item) {
       item.selected = !item.selected;
       event.target.classList.toggle("selected");
+    },
+    hideNotSelected: function(item) {
+      document.querySelector("#gallery").classList.toggle("hide-others");
+    }
+  },
+  computed: {
+    counter: function() {
+      var selected = document.querySelectorAll(".selected");
+      return "(" + selected.length + " images selected)";
     }
   },
   mounted() {
