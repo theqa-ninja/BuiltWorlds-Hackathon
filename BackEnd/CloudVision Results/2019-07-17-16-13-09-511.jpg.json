@@ -1,0 +1,240 @@
+{
+  "responses": [
+    {
+      "labelAnnotations": [
+        {
+          "mid": "/m/03gfsp",
+          "description": "Ceiling",
+          "score": 0.8741388,
+          "topicality": 0.8741388
+        },
+        {
+          "mid": "/m/06ht1",
+          "description": "Room",
+          "score": 0.7795167,
+          "topicality": 0.7795167
+        },
+        {
+          "mid": "/m/03nfmq",
+          "description": "Architecture",
+          "score": 0.76329434,
+          "topicality": 0.76329434
+        },
+        {
+          "mid": "/m/0cgh4",
+          "description": "Building",
+          "score": 0.660251,
+          "topicality": 0.660251
+        },
+        {
+          "mid": "/m/0l7_8",
+          "description": "Floor",
+          "score": 0.65612274,
+          "topicality": 0.65612274
+        }
+      ],
+      "imagePropertiesAnnotation": {
+        "dominantColors": {
+          "colors": [
+            {
+              "color": {
+                "red": 158,
+                "green": 154,
+                "blue": 156
+              },
+              "score": 0.24756023,
+              "pixelFraction": 0.24241889
+            },
+            {
+              "color": {
+                "red": 235,
+                "green": 242,
+                "blue": 246
+              },
+              "score": 0.17937098,
+              "pixelFraction": 0.01179941
+            },
+            {
+              "color": {
+                "red": 104,
+                "green": 83,
+                "blue": 69
+              },
+              "score": 0.14414412,
+              "pixelFraction": 0.15758112
+            },
+            {
+              "color": {
+                "red": 128,
+                "green": 120,
+                "blue": 116
+              },
+              "score": 0.14156933,
+              "pixelFraction": 0.18867257
+            },
+            {
+              "color": {
+                "red": 90,
+                "green": 80,
+                "blue": 78
+              },
+              "score": 0.12306568,
+              "pixelFraction": 0.17433628
+            },
+            {
+              "color": {
+                "red": 195,
+                "green": 189,
+                "blue": 192
+              },
+              "score": 0.06785137,
+              "pixelFraction": 0.009085545
+            },
+            {
+              "color": {
+                "red": 67,
+                "green": 56,
+                "blue": 52
+              },
+              "score": 0.041784517,
+              "pixelFraction": 0.04619469
+            },
+            {
+              "color": {
+                "red": 125,
+                "green": 103,
+                "blue": 90
+              },
+              "score": 0.028824229,
+              "pixelFraction": 0.04979351
+            },
+            {
+              "color": {
+                "red": 98,
+                "green": 73,
+                "blue": 60
+              },
+              "score": 0.008223079,
+              "pixelFraction": 0.021828908
+            },
+            {
+              "color": {
+                "red": 77,
+                "green": 60,
+                "blue": 47
+              },
+              "score": 0.0061969208,
+              "pixelFraction": 0.003539823
+            }
+          ]
+        }
+      },
+      "cropHintsAnnotation": {
+        "cropHints": [
+          {
+            "boundingPoly": {
+              "vertices": [
+                {
+                  "x": 296
+                },
+                {
+                  "x": 727
+                },
+                {
+                  "x": 727,
+                  "y": 767
+                },
+                {
+                  "x": 296,
+                  "y": 767
+                }
+              ]
+            },
+            "confidence": 0.625,
+            "importanceFraction": 0.79058826
+          }
+        ]
+      },
+      "localizedObjectAnnotations": [
+        {
+          "mid": "/m/06rrc",
+          "name": "Shoe",
+          "score": 0.84416795,
+          "boundingPoly": {
+            "normalizedVertices": [
+              {
+                "x": 0.083153605,
+                "y": 0.7545038
+              },
+              {
+                "x": 0.90606016,
+                "y": 0.7545038
+              },
+              {
+                "x": 0.90606016,
+                "y": 0.98446107
+              },
+              {
+                "x": 0.083153605,
+                "y": 0.98446107
+              }
+            ]
+          }
+        },
+        {
+          "mid": "/m/06rrc",
+          "name": "Shoe",
+          "score": 0.6350867,
+          "boundingPoly": {
+            "normalizedVertices": [
+              {
+                "x": 0.8723271,
+                "y": 0.8676477
+              },
+              {
+                "x": 0.9962658,
+                "y": 0.8676477
+              },
+              {
+                "x": 0.9962658,
+                "y": 0.99087733
+              },
+              {
+                "x": 0.8723271,
+                "y": 0.99087733
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "image": {
+        "source": {
+          "imageUri": "https://ucff487c9b45bead7c1a293583f6.previews.dropboxusercontent.com/p/thumb/AAkd086TVQAA2s8V6U-31C5rNZzcLVXMtUVcV-yFFS0H8-EZF0tBectY7XFwaEoHDId9Br96ye7fg9bhlcUb_NFTISM8Ml-l443KEqRaj3D3KL809LgNmUm8pd5y-j-RUgsqiQ2izRvWiFZDkDKiPkqKyYsFmeYo2wq2XULd8VyHtiin4ZFA3m90uGezwfnbKYGs1D902jZe_sas-mIatXfAvaeSDxbeRh7t9mOaBYPJfvSVWJDvA4aeBEujg9lN5F0DtQTupgg1P6iqybMf8TEkzeO5n0zBj1hxtibQ3X99Zm4qplVkldTq7PZDzMuXZk1yNibhNPFDkl50WY3sc0PZu-BdHg_mRL6o4ZjbMEml9_J8D4M-YESLAoU65NX7gJPC_x3o4qtswOZn0dnIgPRFGp2qPkz9W-jBjf_7Rmxz2g/p.jpeg?fv_content=true&size_mode=1"
+        }
+      },
+      "features": [
+        {
+          "type": "LABEL_DETECTION",
+          "maxResults": 5
+        },
+        {
+          "type": "OBJECT_LOCALIZATION",
+          "maxResults": 5
+        },
+        {
+          "type": "TEXT_DETECTION",
+          "maxResults": 1,
+          "model": "builtin/latest"
+        },
+        {
+          "type": "IMAGE_PROPERTIES",
+          "maxResults": 10
+        }
+      ]
+    }
+  ]
+}
