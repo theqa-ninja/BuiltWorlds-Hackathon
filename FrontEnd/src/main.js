@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import routes from './routes'
 import VLink from './components/VLink.vue'
+import { kMeans } from './utility/kMeans'
 
 const app = new Vue({
   el: '#app',
@@ -21,6 +22,7 @@ const app = new Vue({
     'v-link': VLink,
   },
   mounted(){
+    console.log(kMeans([[45,64], [56,98], [23,44], [1,2], [4,55]],3, 12));
   },
   template: 
     '<v-link :href=this.currentRoute></v-link>'

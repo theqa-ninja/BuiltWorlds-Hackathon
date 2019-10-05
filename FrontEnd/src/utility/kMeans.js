@@ -6,7 +6,7 @@ function getDataRanges(extremes) {
 	return ranges;
 }
 
-function getDataExtremes(points) {
+function getDataExtremes(data) {
 	let extremes = [];
 	for (let i in data) {
 		let point = data[i];
@@ -21,7 +21,8 @@ function getDataExtremes(points) {
 	return extremes;
 }
 
-function initMeans(k) {
+function initMeans(k, dataExtremes, dataRange) {
+	let means = [];
 	if ( ! k ){
 		k = 3;
 	}
@@ -35,8 +36,7 @@ function initMeans(k) {
 	return means;
 }
 
-function makeAssignments(data, mean, assignments) {
-  assignments = Array( data.length );
+function makeAssignments(data, means, assignments) {
 	for (let i in data) {
 		let point = data[i];
     let distances = [];
@@ -50,13 +50,12 @@ function makeAssignments(data, mean, assignments) {
 			}
 			distances[j] = Math.sqrt(sum);
 		}
-		assignments[i] = distances.indexOf( Math.min.apply(null, distances) );
+    assignments[i] = distances.indexOf( Math.min.apply(null, distances) );
   }
-  return assignments;
 }
 
-function moveMeans(data, means, assignments) {
-  makeAssignments(data, measn, assignments);
+function moveMeans(data, means, dataExtremes, dataRange, assignments) {
+  makeAssignments(data, means, assignments);
   let sums = Array( means.length );
 	let counts = Array( means.length );
 	let moved = false;
@@ -99,22 +98,30 @@ function moveMeans(data, means, assignments) {
 	if (means.toString() !== sums.toString()){
 		moved = true;
 	}
-	means = sums;
-	return moved;
+  means = sums;
+  return moved;
 }
 
-export function kMeans(data, interations, k){
+export const kMeans = (data, k, interations)=>{
   const dataExtremes = getDataExtremes(data);
-  const dataRanges = getDataRanges(dataExtremes);
-  let means = initMeans(k);
+  const dataRange = getDataRanges(dataExtremes);
+  let means = initMeans(k, dataExtremes, dataRange);
   let assignments = Array( data.length );
 
-  for (let i in interations){
-    let moved = moveMeans(data, means, assignments);
+  for (let step = 0; step < interations; step++){
+    let moved = moveMeans(data, means, dataExtremes, dataRange, assignments);
     if (!moved) {
       break;
     }
   }
 
-  return assignments;
+  let results = Array( k );
+  for (let i in assignments){
+    const label = assignments[i];
+    if (typeof(results[label]) === 'undefined'){
+      results[label] = [];
+    }
+    results[label].push(data[i]);
+  }
+  return results;
 }
