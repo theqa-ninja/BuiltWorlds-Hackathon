@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "bwhacker",
+    "password": "QArocks",
+    "database": "bwhack_dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "bwhacker",
+    "password": "QArocks",
+    "database": "bwhack_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "bwhacker",
+    "password": "QArocks",
+    "database": "bwhack_prod",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
