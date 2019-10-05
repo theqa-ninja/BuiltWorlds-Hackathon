@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import routes from './routes'
-import VLink from './components/VLink.vue'
 import App from './App.vue'
 
 const app = new Vue({
@@ -18,7 +17,6 @@ const app = new Vue({
     }
   },
   components: {
-    'v-link': VLink,
   },
   render: h => h(App)
 
