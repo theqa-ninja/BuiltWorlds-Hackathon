@@ -1,18 +1,16 @@
 import express from 'express';
-import { Exif } from '../services';
+import { exif } from '../services';
 const router = express.Router();
+
+console.log(exif);
 
 
 router.post('/extract', async (req, res, next) => {
   const images = req.body;
 
-  const exifs = images.map(async (url) => {
-    const exif = new Exif(url);
-    return await exif.extractGPSAsArray();
-  })
+  const lla = await exif.extractExifs(images);
 
-  console.log(exifs);
-  res.send(exifs);
+  res.send(lla);
 });
 
 export default router;
