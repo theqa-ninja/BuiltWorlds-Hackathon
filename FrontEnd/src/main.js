@@ -1,5 +1,8 @@
+/* eslint-disable */
+
 import Vue from 'vue'
 import routes from './routes'
+import VLink from './components/VLink.vue'
 
 const app = new Vue({
   el: '#app',
@@ -14,7 +17,14 @@ const app = new Vue({
         : require('./pages/404.vue')
     }
   },
-  template: '<main id="app" />'
+  components: {
+    'v-link': VLink,
+  },
+  mounted(){
+  },
+  template: 
+    '<v-link :href=this.currentRoute></v-link>'
+
 });
 
 window.addEventListener('popstate', () => {
