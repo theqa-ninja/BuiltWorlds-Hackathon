@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png" />
+    <img src="./assets/logo.svg" class="logo" />
     <Home />
     <ViewFiles />
   </div>
@@ -21,6 +21,10 @@ export default {
 * {
   box-sizing: border-box;
 }
+.logo {
+  max-width: 100px;
+}
+]
 h1,
 h2 {
   font-weight: normal;
@@ -67,5 +71,8 @@ input[type="submit"] {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.hide {
+  display: none;
 }
 </style>

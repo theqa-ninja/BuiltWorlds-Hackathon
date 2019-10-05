@@ -54,28 +54,4 @@ export default {
     xhr.send();
   }
 };
-
-// var url = "https://picsum.photos/v2/list?page=2&limit=100";
-// var xhr = new XMLHttpRequest();
-// xhr.open("GET", url);
-// xhr.onload = function() {
-//   var context = this.responseText;
-//   gallery_images(context);
-// };
-// xhr.onerror = "error";
-// xhr.send();
-
-// gallery_images(context) => {
-//   var imagesHTML = "";
-//   var json = JSON.parse(context);
-//   this.imageJson = json;
-// }
-
-// var images = document.querySelectorAll(".img");
-// Array.prototype.forEach.call(images, function(el, i) {
-//   el.addEventListener("click", function(el) {
-//     console.log("clicked");
-//     el.classList.toggle(".selected");
-//   });
-// });
 </script>
