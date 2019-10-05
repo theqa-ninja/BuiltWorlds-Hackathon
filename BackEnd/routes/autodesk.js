@@ -18,7 +18,7 @@ router.get('/callback', (req, res) => {
         // ugh, so bad
         console.log(credentials);
 
-        res.redirect('/api/autodesk/hubs');
+        res.redirect('/');
     }).catch(e => {
         console.error(e);
         res.send("login failed");

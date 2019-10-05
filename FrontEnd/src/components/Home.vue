@@ -1,6 +1,9 @@
 <template>
   <div class="home">
     <h1>{{ heading }}</h1>
+    <div>
+      <a href="/api/autodesk/signin">log in with Autodesk!</a>
+    </div>
     <form action="/something" method="post" @submit="submitForm" novalidate="true">
       <label for="fileToUpload">{{ upload }}</label>
       <p>
