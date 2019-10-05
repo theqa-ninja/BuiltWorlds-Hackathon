@@ -22,13 +22,13 @@ app.use(function (req, res, next) {
       req.session.credentials = {}
   }
 
-  req.session.credentials['autodesk'] = {
-    access_token: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJ1c2VyaWQiOiJKN1FVSjVUTjhTQVQiLCJleHAiOjE1NzAzMjA1ODYsInNjb3BlIjpbInVzZXItcHJvZmlsZTpyZWFkIiwiZGF0YTpzZWFyY2giLCJkYXRhOnJlYWQiLCJidWNrZXQ6cmVhZCIsImFjY291bnQ6cmVhZCIsInZpZXdhYmxlczpyZWFkIl0sImNsaWVudF9pZCI6ImFVakdBR1FKdlc0ak9qQXA3RHQ0bEFNRVB6Q2ZxYll1IiwiZ3JhbnRfaWQiOiJJblVpMEZFdGNzWElSTUZrcUxpWUc5OHBHQjJyQnF5SSIsImF1ZCI6Imh0dHBzOi8vYXV0b2Rlc2suY29tL2F1ZC9qd3RleHA2MCIsImp0aSI6IkY3SWlzQTdJN25CVURaRHdGRENscFl5NVNZdkQ3dFNFQXNRSUZ2bVlCelZSRHNHN1F6cGxFazNmdUo0cUNBSk4ifQ.2rqDMsdESA92bDdHnCVfaUu0Eic45b2uitb8zgwMHAI',
-    refresh_token: 'sQFGiyTgDHdPdPAaaE1ECJgmnVjs5SxfBJHFCjyKtw',
+  req.session.credentials['autodesk'] = { 
+    access_token: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJ1c2VyaWQiOiJKN1FVSjVUTjhTQVQiLCJleHAiOjE1NzAzMTMyNDgsInNjb3BlIjpbInVzZXItcHJvZmlsZTpyZWFkIiwiZGF0YTpzZWFyY2giLCJkYXRhOnJlYWQiLCJidWNrZXQ6cmVhZCIsImFjY291bnQ6cmVhZCIsInZpZXdhYmxlczpyZWFkIl0sImNsaWVudF9pZCI6ImFVakdBR1FKdlc0ak9qQXA3RHQ0bEFNRVB6Q2ZxYll1IiwiZ3JhbnRfaWQiOiJUNWpkVUNmUUs0NmRwTEh6Zm0yTW9lSEFvQThpaGRWeiIsImF1ZCI6Imh0dHBzOi8vYXV0b2Rlc2suY29tL2F1ZC9qd3RleHA2MCIsImp0aSI6Ik9nSDBCZG8wU2RkUFdOM3FpWURHY3ZhZG5Lamx2SEtCbHduUFRzaXFxbWN1clpoc0NSUG5KYW1xVlNIQWZGMFAifQ.Wr-drAAoA-8OYYd5T29i6J1aqnMngkMOmDxz2BtJUMg',
+    refresh_token: '2QoC4v0BLtV9ACHW8WET812aNzx48B3w53vtK7Ede7',
     token_type: 'Bearer',
     expires_in: 3599,
-    expires_at: '2019-10-06T00:09:45.892Z'
-  }
+    expires_at: '2019-10-05T22:07:27.825Z' 
+  } 
 
 
   next()
