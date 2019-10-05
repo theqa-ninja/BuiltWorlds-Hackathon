@@ -13,7 +13,6 @@
           v-for="image in imageJson"
           src
           :data-src="image.download_url"
-          v-show="!image.selected"
           alt
           class="img"
           @click="clickHandler(image)"
@@ -33,23 +32,34 @@ export default {
         "Here are the images you uploaded. Please select the ones you want to remove.",
       url: "Or upload from URL:",
       remove: "Remove",
-      imageJson: null
+      imageJson: [],
+      counter: 0,
     };
   },
   methods: {
-    clickHandler: function(item) {
+    clickHandler(item) {
       item.selected = !item.selected;
+      console.log(item.selected)
       event.target.classList.toggle("selected");
+      this.countSelectedItems();
     },
-    hideNotSelected: function(item) {
+    hideNotSelected(item) {
       document.querySelector("#gallery").classList.toggle("hide-others");
+    },
+    countSelectedItems(){
+      let count = 0;
+      this.imageJson.forEach( (image) => {
+        count += image.selected
+      });
+      this.counter = count
     }
   },
   computed: {
-    counter: function() {
-      var selected = document.querySelectorAll(".selected");
-      return "(" + selected.length + " images selected)";
-    }
+    // counter: function() {
+    //   this.imageJson.reduce(image=>{
+    //     image.selected === true
+    //   })
+    // },
   },
   mounted() {
     var url = "https://picsum.photos/v2/list?page=2&limit=100";
