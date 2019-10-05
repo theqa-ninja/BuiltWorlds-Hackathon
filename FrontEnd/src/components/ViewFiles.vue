@@ -4,9 +4,15 @@
     <p>{{ msg }}</p>
     <p>
       <button class="button" @click="hideNotSelected">Toggle Select</button>
+    </p>
+    <p>
       <span class="counter">{{ counter }}</span>
     </p>
     <div id="gallery">
+      <p>
+        <button class="button delete" @click="deleteImages">Delete</button>
+      </p>
+      <p class="deleted hide">{{ deleted }}</p>
       <div class="inner">
         <img
           v-lazyload
@@ -34,6 +40,9 @@ export default {
       remove: "Remove",
       imageJson: [],
       counter: 0,
+      deleted: "Deleted!"
+      imageJson: [],
+      counter: 0,
     };
   },
   methods: {
@@ -45,6 +54,15 @@ export default {
     },
     hideNotSelected(item) {
       document.querySelector("#gallery").classList.toggle("hide-others");
+    },
+    deleteImages: function(item) {
+      document.querySelector("#gallery").classList.toggle("hide-others");
+      var selected = document.querySelectorAll(".selected");
+      console.log(selected);
+      Array.prototype.forEach.call(selected, function(el, i) {
+        el.parentNode.removeChild(el);
+      });
+      document.querySelector(".deleted").classList.remove("hide");
     },
     countSelectedItems(){
       let count = 0;
