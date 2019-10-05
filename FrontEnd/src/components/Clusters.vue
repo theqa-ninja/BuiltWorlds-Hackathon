@@ -9,7 +9,7 @@
 <script>
   import ViewFiles from './ViewFiles.vue'
   export default {
-    name: "ClustersDisplay",
+    name: "Clusters",
     props: {
     },
     data: () => {

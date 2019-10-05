@@ -1,24 +1,24 @@
 <template>
-  <main id="app">
+  <div id="app">
     <img src="./assets/logo.svg" class="logo" />
     <Home
       v-if='!submitted'
     ></Home>
-    <clusters-display
+    <clusters
       v-if='submitted'
     >
-    </clusters-display>
+    </clusters>
   </div>
 </template>
 
 <script>
 import Home from "./components/Home";
-import ClustersDisplay from './components/ClustersDisplay.vue';
+import Clusters from './components/Clusters.vue';
 export default {
   name: "App",
   components: {
     Home,
-    'clusters-display' : ClustersDisplay, 
+    'clusters' : Clusters, 
   },
   computed: {
     submitted(){
