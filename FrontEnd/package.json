@@ -9,7 +9,7 @@
     "localstart": "npm run dev",
     "start": "node server.js",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js",
+    "build": "node build/build.js && sequelize db:migrate",
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
