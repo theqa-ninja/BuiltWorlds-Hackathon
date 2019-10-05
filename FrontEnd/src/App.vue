@@ -1,17 +1,27 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <cluster-display
+      :clusters="clusters"
+    ></cluster-display>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import { kMeans } from './utility/kMeans';
+import ClusterDisplay from './components/ClusterDisplay.vue'
 
 export default {
   name: 'App',
+  data: () => {
+    return {
+      clusters: [],
+    }
+  },
   components: {
-    HelloWorld
+    'cluster-display': ClusterDisplay,
+  },
+  mounted(){
+    
   }
 }
 </script>
