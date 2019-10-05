@@ -20,17 +20,11 @@ export default {
     Home,
     'clusters-display' : ClustersDisplay, 
   },
-  data () {
-    return {
-    };
-  },
   computed: {
     submitted(){
       return this.$store.getters.submitted;
     }
   },
-  mounted(){
-  }
 };
 </script>
 <style>

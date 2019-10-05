@@ -14,7 +14,6 @@ const app = new Vue({
   components: {
   },
   render: h => h(App)
-
 });
 
 window.addEventListener('popstate', () => {

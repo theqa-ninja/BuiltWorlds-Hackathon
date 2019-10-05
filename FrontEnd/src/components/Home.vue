@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>{{ heading }}</h1>
-    <form action="/something" method="post" @submit="submitForm" novalidate="true">
+    <form action="/something" @submit="submitForm" novalidate="true">
       <label for="fileToUpload">{{ upload }}</label>
       <p>
         <input type="file" name="fileToUpload" id="fileToUpload" />
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import store from "./store";
 export default {
   name: "Home",
   data() {
@@ -28,16 +29,13 @@ export default {
     };
   },
   methods: {
-    submitForm: function(msg, e) {
-      e.preventDefault();
-      console.log(msg);
-      document.querySelector("home").classList.add("hide");
-      document.querySelector("view-files").classList.remove("hide");
-      return false;
-    }
+    submitForm(){
+      event.preventDefault();
+      console.log(this.$store)
+      this.$store.commit('submitted', true);
+    },
   },
   mounted(){
-    console.log(this.$store)
   }
 };
 </script>

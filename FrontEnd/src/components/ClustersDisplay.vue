@@ -1,8 +1,7 @@
 <template>
   <div 
     class='clusters-container'> 
-    <view-files 
-      v-for='clusters in clusters'>
+    <view-files>
     </view-files>
   </div>
 </template>

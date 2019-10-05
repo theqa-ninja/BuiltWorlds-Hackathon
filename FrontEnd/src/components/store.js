@@ -10,5 +10,10 @@ export default new Vuex.Store({
     submitted: (state)=>{
       return state.submitted;
     }
+  },
+  mutations: {
+    submitted (state, payload) {
+      state.submitted += payload
+    }
   }
 });
