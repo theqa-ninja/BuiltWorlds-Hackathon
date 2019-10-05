@@ -20,7 +20,7 @@ const processVision = async (image) => {
 }
 
 const processExifAndVision = async (url, token) => {
-  // Create Image Document
+  // TODO: Create Image Document
 
   try {
     const image = await fetchImage(url, token);
@@ -30,10 +30,14 @@ const processExifAndVision = async (url, token) => {
       processVision(image)
     ]);
 
-    // Save to DB
+    // TODO: Save to DB
     console.log(lla, tags);
 
-    return lla;
+    return {
+      imageId: null,
+      lla,
+      tags
+    };
   } catch (e) {
     console.error(e);
     return null;
@@ -41,7 +45,10 @@ const processExifAndVision = async (url, token) => {
 }
 
 const processImages = async (urls, token=null) => {
-  await asyncPool(3, urls, processExifAndVision);
+  const payload = await asyncPool(3, urls, processExifAndVision);
+
+  // TODO: Hook up k-means here
+  return payload;
 };
 
 export default processImages;
