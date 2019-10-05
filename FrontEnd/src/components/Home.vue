@@ -8,7 +8,7 @@
       </p>
       <label for="url">{{ url }}</label>
       <p>
-        <input type="text" name="url" />
+        <input type="text" name="url" placeholder="https://" />
       </p>
       <p>
         <input type="submit" name="submit" value="submit" class="button" />

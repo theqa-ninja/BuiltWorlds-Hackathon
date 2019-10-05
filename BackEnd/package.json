@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "babel-node app.js",
+    "start": "babel-node app.js",
     "dev": "nodemon --exec babel-node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && sequelize db:migrate"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +21,9 @@
     "express-session": "^1.16.2",
     "forge-apis": "^0.4.5",
     "geolib": "^3.0.4",
+    "pg": "^7.12.1",
+    "sequelize": "^5.19.3",
+    "sequelize-cli": "^5.5.1",
     "tiny-async-pool": "^1.0.4"
   },
   "devDependencies": {

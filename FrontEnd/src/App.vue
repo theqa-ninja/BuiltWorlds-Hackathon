@@ -14,6 +14,8 @@
 <script>
 import Home from "./components/Home";
 import Clusters from './components/Clusters.vue';
+import ViewFiles from "./components/ViewFiles";
+
 export default {
   name: "App",
   components: {

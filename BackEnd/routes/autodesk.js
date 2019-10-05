@@ -1,6 +1,7 @@
 import express from 'express';
 import ForgeSDK from 'forge-apis';
 import { processImages } from '../services';
+import axios from 'axios';
 
 const AUTODESK_CLIENT_ID = process.env.AUTODESK_CLIENT_ID
 const AUTODESK_CLIENT_SECRET = process.env.AUTODESK_CLIENT_SECRET
@@ -77,18 +78,68 @@ router.get('/project/:project_id/folder/:folder_id', (req, res) => {
         map((d) => {
           return {
             link: d['links']['self']['href'],
-            name: d['attributes']['displayName']
+            name: d['attributes']['displayName'],
+            id: d['id']
           }
       });
 
-      processImages(items, credentials['access_token']);
+//      processImages(items, credentials['access_token']);
 
       res.json(items)
   }).catch(e => {
     console.log(e);
     res.send(e)
   });
-})
+});
+
+router.get('/project/:project_id/item/:item_id', (req, res) => {
+  const ItemsApi = new ForgeSDK.ItemsApi();
+  const credentials = req.session.credentials['autodesk'];
+
+  const projectId = req.params['project_id'];
+  const itemId = req.params['item_id'];
+
+  ItemsApi.getItemTip(projectId, itemId, oauthClient(), credentials).then( (contents) => {
+      const itemData = contents.body['data'];
+
+      res.json(itemData)
+  }).catch(e => {
+    console.log(e);
+    res.send(e)
+  });
+});
+
+router.get('/project/:project_id/item/:item_id/thumbnail', (req, res, next) => {
+  const ItemsApi = new ForgeSDK.ItemsApi();
+  const credentials = req.session.credentials['autodesk'];
+
+  const projectId = req.params['project_id'];
+  const itemId = req.params['item_id'];
+
+  ItemsApi.getItemTip(projectId, itemId, oauthClient(), credentials).then( (contents) => {
+    const thumbnailURL = contents.body['data'].relationships.thumbnails.meta.link.href;
+
+    res.writeHead(200, {
+      'Content-Type': 'image/png'
+    });
+
+    axios({
+      method: 'get',
+      url: thumbnailURL,
+      headers: {
+        Authorization: `Bearer ${credentials.access_token}`
+      },
+      responseType: 'stream'
+    }).then( response => {
+      response.data.on('data', (chunk) => res.write(chunk));
+      response.data.on('end', () => res.end())
+    })
+
+  }).catch(e => {
+    console.log(e);
+    res.send(e)
+  });
+});
 
 function oauthClient() {
   return new ForgeSDK.AuthClientThreeLegged(

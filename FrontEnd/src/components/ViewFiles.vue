@@ -3,14 +3,24 @@
     <h1>{{ heading }}</h1>
     <p>{{ msg }}</p>
     <p>
-      <input type="submit" class="button" />
+      <button class="button" @click="hideNotSelected">Toggle Select</button>
+    </p>
+    <p>
+      <span class="counter">{{ counter }}</span>
     </p>
     <div id="gallery">
+      <p>
+        <button class="button delete" @click="deleteImages">Delete</button>
+      </p>
+      <p 
+        v-show='deleted'
+        class="deleted hide">Deleted!</p>
       <div class="inner">
         <img
+          v-lazyload
           v-for="image in imageJson"
-          :src="image.download_url"
-          v-show="!image.selected"
+          src
+          :data-src="image.download_url"
           alt
           class="img"
           @click="clickHandler(image)"
@@ -30,14 +40,54 @@ export default {
         "Here are the images you uploaded. Please select the ones you want to remove.",
       url: "Or upload from URL:",
       remove: "Remove",
-      imageJson: null
+      imageJson: [],
+      counter: 0,
+      deleted: false,
+      imageJson: [],
+      counter: 0,
+      timerId: null,
     };
   },
   methods: {
-    clickHandler: function(item) {
+    clickHandler(item) {
       item.selected = !item.selected;
+      console.log(item.selected)
       event.target.classList.toggle("selected");
+      this.countSelectedItems();
+    },
+    hideNotSelected(item) {
+      document.querySelector("#gallery").classList.toggle("hide-others");
+    },
+    deleteImages: function(item) {
+      document.querySelector("#gallery").classList.toggle("hide-others");
+      var selected = document.querySelectorAll(".selected");
+      console.log(selected);
+      Array.prototype.forEach.call(selected, function(el, i) {
+        el.parentNode.removeChild(el);
+      });
+      // document.querySelector(".deleted").classList.remove("hide");
+      if (this.timerId !== null){
+        clearTimeout(this.timerId);
+      }
+      this.deleted = true;
+      this.timerId = setTimeout(()=>{
+        this.deleted = false;
+      }, 2000);
+    },
+    countSelectedItems(){
+      let count = 0;
+      this.imageJson.forEach( (image) => {
+        count += image.selected
+      });
+      this.counter = count
     }
+  },
+  computed: {
+    // counter: function() {
+    //   this.imageJson.reduce(image=>{
+    //     image.selected === true
+    //   })
+    // },
   },
   mounted() {
     var url = "https://picsum.photos/v2/list?page=2&limit=100";
