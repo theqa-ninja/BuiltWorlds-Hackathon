@@ -1,12 +1,15 @@
 import express from 'express';
-
+import { Exif } from '../services';
 const router = express.Router();
 
-router.post('/extract', (req, res, next) => {
+
+router.post('/extract', async (req, res, next) => {
   const images = req.body;
 
-  console.log(images);
-  res.send('it working');
+  const exifs = images.map((image) => {
+    return new Exif(url);
+  })
+  res.send(exif);
 });
 
 export default router;
