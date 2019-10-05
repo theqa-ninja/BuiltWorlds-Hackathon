@@ -8,7 +8,7 @@
 * [x] set up heroku for auto deploy from master
 * [x] set up google vision analysis (postman)
 * [x] set up microsoft vision analysis (postman)
-* [ ] set up postgres DB
+* [x] set up postgres DB
 * [ ] BIM360 integration (aaron)
 * [ ] Clustering (Yumo)
 * [ ] extracting exif aka gps (Daniel)
