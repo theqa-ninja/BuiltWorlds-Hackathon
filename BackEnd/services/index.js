@@ -1,5 +1,6 @@
-import * as exif from './exif';
+import { Exif, extractExifs } from './exif';
 
 export {
-  exif
+  Exif,
+  extractExifs
 }
