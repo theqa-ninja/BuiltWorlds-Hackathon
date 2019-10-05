@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <section class="home">
     <h1>{{ heading }}</h1>
     <div>
       <a href="/api/autodesk/signin">log in with Autodesk!</a>
@@ -14,10 +14,10 @@
         <input type="text" name="url" />
       </p>
       <p>
-        <input type="submit" name="submit" value="submit" />
+        <input type="submit" name="submit" value="submit" class="button" />
       </p>
     </form>
-  </div>
+  </section>
 </template>
 
 <script>

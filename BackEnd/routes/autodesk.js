@@ -1,5 +1,6 @@
 import express from 'express';
 import ForgeSDK from 'forge-apis';
+import { processImages } from '../services';
 
 const AUTODESK_CLIENT_ID = process.env.AUTODESK_CLIENT_ID
 const AUTODESK_CLIENT_SECRET = process.env.AUTODESK_CLIENT_SECRET
@@ -71,7 +72,6 @@ router.get('/project/:project_id/folder/:folder_id', (req, res) => {
 
   FoldersApi.getFolderContents(projectId, folderId, {}, oauthClient(), credentials).then( (contents) => {
       const itemsData = contents.body['data'];
-      console.log(contents.body.data)
 
       const items = itemsData.
         map((d) => {
@@ -80,8 +80,14 @@ router.get('/project/:project_id/folder/:folder_id', (req, res) => {
             name: d['attributes']['displayName']
           }
       });
+
+      processImages(items, credentials['access_token']);
+
       res.json(items)
-  }).catch(e => {res.send(e)});
+  }).catch(e => {
+    console.log(e);
+    res.send(e)
+  });
 })
 
 function oauthClient() {
