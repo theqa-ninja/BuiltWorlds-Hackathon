@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --exec babel-node app.js",
     "server": "babel-node app.js",
     "blah": "babel-node test-session.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
-    "@babel/node": "^7.6.2"
+    "@babel/node": "^7.6.2",
+    "nodemon": "^1.19.3"
   }
 }
