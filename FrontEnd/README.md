@@ -3,7 +3,7 @@
 > A Vue.js project
 
 ## Running Locally
-```
+``` bash
 cd ./FrontEnd/
 npm install
 npm run build
@@ -34,12 +34,26 @@ psql -c "\du"
 # make sure databases are created
 psql -c "\list"
 
-./node_modules/.bin/sequelize model:generate --name images --attributes filename:string,path:string
 ./node_modules/.bin/sequelize db:create
 ./node_modules/.bin/sequelize db:migrate
+```
+
+## Useful db commands
+``` bash
+# undo last migrate
+./node_modules/.bin/sequelize db:migrate:undo
+
+# undo all migrates
+./node_modules/.bin/sequelize db:migrate:undo:all
+
+# seed data
+./node_modules/.bin/sequelize db:seed:all
 
 # helpful check for tables in the db
 psql -c "\dt" -d bwhack_dev
+
+# to create a new model
+./node_modules/.bin/sequelize model:generate --name images --attributes filename:string,path:string
 ```
 
 ## Build Setup
