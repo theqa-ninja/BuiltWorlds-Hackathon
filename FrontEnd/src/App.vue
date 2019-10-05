@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
+  <main id="app">
     <img src="./assets/logo.svg" class="logo" />
     <Home />
     <ViewFiles />
-  </div>
+  </main>
 </template>
 
 <script>
