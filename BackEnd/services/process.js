@@ -69,9 +69,6 @@ const processImages = async (images, token=null) => {
 
   console.log(payload);
 
-  const fs = require('fs');
-  fs.writeFileSync('test.json', JSON.stringify(payload));
-
   // TODO: Hook up k-means here
   return payload;
 };
