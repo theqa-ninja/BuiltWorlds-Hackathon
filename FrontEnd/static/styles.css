@@ -93,7 +93,7 @@ a {
 }
 
 #gallery .deleted.hide {
-    display: none;
+    /* display: none; */
     background: transparent;
     transition: all .5s ease;
 }
@@ -106,7 +106,7 @@ a {
     left: 0;
     right: 0;
     animation-name: showhide;
-    animation-duration: 5s;
+    animation-duration: 2s;
     animation-direction: normal;
     animation-iteration-count: 1;
 }
@@ -181,5 +181,5 @@ input[type="text"] {
 }
 
 .hide {
-    display: none;
+    /* display: none; */
 }

@@ -12,7 +12,9 @@
       <p>
         <button class="button delete" @click="deleteImages">Delete</button>
       </p>
-      <p class="deleted hide">{{ deleted }}</p>
+      <p 
+        v-show='deleted'
+        class="deleted hide">Deleted!</p>
       <div class="inner">
         <img
           v-lazyload
@@ -40,9 +42,10 @@ export default {
       remove: "Remove",
       imageJson: [],
       counter: 0,
-      deleted: "Deleted!"
+      deleted: false,
       imageJson: [],
       counter: 0,
+      timerId: null,
     };
   },
   methods: {
@@ -62,7 +65,14 @@ export default {
       Array.prototype.forEach.call(selected, function(el, i) {
         el.parentNode.removeChild(el);
       });
-      document.querySelector(".deleted").classList.remove("hide");
+      // document.querySelector(".deleted").classList.remove("hide");
+      if (this.timerId !== null){
+        clearTimeout(this.timerId);
+      }
+      this.deleted = true;
+      this.timerId = setTimeout(()=>{
+        this.deleted = false;
+      }, 2000);
     },
     countSelectedItems(){
       let count = 0;
