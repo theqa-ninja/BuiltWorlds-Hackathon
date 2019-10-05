@@ -22,7 +22,7 @@
     methods: {
     },
     mounted(){
-
+      
     }
   }
 </script>

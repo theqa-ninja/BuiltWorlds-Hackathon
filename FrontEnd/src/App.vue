@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <img src='./assets/logo.png'/>
     <cluster-display
       :clusters="clusters"
     ></cluster-display>
@@ -7,7 +8,6 @@
 </template>
 
 <script>
-import { kMeans } from './utility/kMeans';
 import ClusterDisplay from './components/ClusterDisplay.vue'
 
 export default {
@@ -21,7 +21,7 @@ export default {
     'cluster-display': ClusterDisplay,
   },
   mounted(){
-    
+    this.clusters = kMeans()
   }
 }
 </script>
