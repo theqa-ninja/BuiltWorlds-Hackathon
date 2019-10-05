@@ -40,45 +40,7 @@
   },
   "parameters": [
     {
-      "categories": [
-          {
-              "name": "others_",
-              "score": 0.0078125
-          },
-          {
-              "name": "object_screen",
-              "score": 0.91796875
-          }
-      ],
-      "description": {
-          "tags": [
-              "indoor",
-              "sitting",
-              "table",
-              "building",
-              "luggage",
-              "large",
-              "room",
-              "suitcase",
-              "bed",
-              "white",
-              "parked",
-              "man",
-              "standing"
-          ],
-          "captions": [
-              {
-                  "text": "a large room",
-                  "confidence": 0.7011152870626689
-              }
-          ]
-      },
-      "requestId": "592b65f9-f5c8-4c10-9c5f-3690c55b76b3",
-      "metadata": {
-          "width": 1024,
-          "height": 768,
-          "format": "Jpeg"
-      }
+      "url":"https://ucff487c9b45bead7c1a293583f6.previews.dropboxusercontent.com/p/thumb/AAkd086TVQAA2s8V6U-31C5rNZzcLVXMtUVcV-yFFS0H8-EZF0tBectY7XFwaEoHDId9Br96ye7fg9bhlcUb_NFTISM8Ml-l443KEqRaj3D3KL809LgNmUm8pd5y-j-RUgsqiQ2izRvWiFZDkDKiPkqKyYsFmeYo2wq2XULd8VyHtiin4ZFA3m90uGezwfnbKYGs1D902jZe_sas-mIatXfAvaeSDxbeRh7t9mOaBYPJfvSVWJDvA4aeBEujg9lN5F0DtQTupgg1P6iqybMf8TEkzeO5n0zBj1hxtibQ3X99Zm4qplVkldTq7PZDzMuXZk1yNibhNPFDkl50WY3sc0PZu-BdHg_mRL6o4ZjbMEml9_J8D4M-YESLAoU65NX7gJPC_x3o4qtswOZn0dnIgPRFGp2qPkz9W-jBjf_7Rmxz2g/p.jpeg?fv_content=true&size_mode=1"
     }
   ]
 }
