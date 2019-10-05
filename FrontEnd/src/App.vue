@@ -1,19 +1,35 @@
 <template>
   <div id="app">
     <img src="./assets/logo.svg" class="logo" />
-    <Home />
-    <ViewFiles />
+    <Home
+      v-if='!submitted'
+    ></Home>
+    <clusters-display
+      v-if='submitted'
+    >
+    </clusters-display>
   </div>
 </template>
 
 <script>
 import Home from "./components/Home";
-import ViewFiles from "./components/ViewFiles";
+import ClustersDisplay from './components/ClustersDisplay.vue';
 export default {
   name: "App",
   components: {
     Home,
-    ViewFiles
+    'clusters-display' : ClustersDisplay, 
+  },
+  data () {
+    return {
+    };
+  },
+  computed: {
+    submitted(){
+      return this.$store.getters.submitted;
+    }
+  },
+  mounted(){
   }
 };
 </script>

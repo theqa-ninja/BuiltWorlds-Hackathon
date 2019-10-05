@@ -1,20 +1,15 @@
-import Vue from 'vue'
-import routes from './routes'
-import App from './App.vue'
+import App from './App.vue';
+import Vue from 'vue';
+import store from './components/store'
 
 const app = new Vue({
   el: '#app',
+  store,
   data: {
     currentRoute: window.location.pathname,
     clusters: [],
   },
   computed: {
-    ViewComponent() {
-      const matchingView = routes[this.currentRoute]
-      return matchingView
-        ? require('./pages/' + matchingView + '.vue')
-        : require('./pages/404.vue')
-    }
   },
   components: {
   },

@@ -1,28 +1,29 @@
 <template>
   <div 
     class='clusters-container'> 
-    <cluster-content 
-      v-for='cluster in clusters'>
-    </cluster-content>
+    <view-files 
+      v-for='clusters in clusters'>
+    </view-files>
   </div>
 </template>
 
 <script>
-
+  import ViewFiles from './ViewFiles.vue'
   export default {
+    name: "ClustersDisplay",
     props: {
     },
     data: () => {
       return {
-        clusters: Array,
+        clusters: [],
       }
     },
-    computed: {
+    components: {
+      'view-files': ViewFiles,
     },
     methods: {
     },
-    mounted(){
-      
+    mounted(){ 
     }
   }
 </script>
