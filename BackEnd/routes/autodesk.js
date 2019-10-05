@@ -29,8 +29,9 @@ router.get('/hubs', (req, res) => {
   const HubsApi = new ForgeSDK.HubsApi();
   const credentials = req.session.credentials['autodesk'];
 
-  HubsApi.getHubs({}, oauthClient(), credentials).then( (hubs) => {
-      res.json(hubs.body);
+  HubsApi.getHubs({}, oauthClient(), credentials).then( (contents) => {
+    const hubsData = contents.body.data
+    res.json(hubsData);
   }).catch(e => {res.send(e)})
 })
 
@@ -60,6 +61,7 @@ router.get('/hub/:hub_id/project/:project_id', (req, res) => {
 // photo dataset
 // project b.b91369c2-d2a2-423c-9755-14d71f38ed96
 // folder urn:adsk.wipprod:fs.folder:co.DYVvlgcjSfutU4PkWyTtSQ
+// curl http://localhost:3000/api/autodesk/project/b.b91369c2-d2a2-423c-9755-14d71f38ed96/folder/urn:adsk.wipprod:fs.folder:co.DYVvlgcjSfutU4PkWyTtSQ
 router.get('/project/:project_id/folder/:folder_id', (req, res) => {
   const FoldersApi = new ForgeSDK.FoldersApi();
   const credentials = req.session.credentials['autodesk'];
@@ -68,20 +70,19 @@ router.get('/project/:project_id/folder/:folder_id', (req, res) => {
   const folderId = req.params['folder_id'];
 
   FoldersApi.getFolderContents(projectId, folderId, {}, oauthClient(), credentials).then( (contents) => {
-      res.json(contents.body);
+      const itemsData = contents.body['data'];
+      console.log(contents.body.data)
+
+      const items = itemsData.
+        map((d) => {
+          return {
+            link: d['links']['self']['href'],
+            name: d['attributes']['displayName']
+          }
+      });
+      res.json(items)
   }).catch(e => {res.send(e)});
 })
-
-router.get('/object/:id', (req, res) => {
-  const ObjectsApi = new ForgeSDK.ObjectsApi();
-  const credentials = req.session.credentials['autodesk'];
-
-  const objectId = req.params['id'];
-
-  ObjectsApi.getSignedResource(objectId, {}, oauthClient, credentials).then( (contents) => {
-    res.json(contents.body);
-  }).catch(e => {res.send(e)});
-});
 
 function oauthClient() {
   return new ForgeSDK.AuthClientThreeLegged(
