@@ -18,6 +18,9 @@ export default {
 };
 </script>
 <style>
+* {
+  box-sizing: border-box;
+}
 h1,
 h2 {
   font-weight: normal;
@@ -35,11 +38,13 @@ a {
 }
 #gallery .img {
   display: inline-block;
-  width: 25%;
-  vertical-align: top;
-}
-img {
+  width: 20%;
   max-width: 100%;
+  vertical-align: top;
+  padding: 0.5rem;
+}
+#gallery .selected {
+  background: yellow;
 }
 input[type="text"] {
   width: 100%;

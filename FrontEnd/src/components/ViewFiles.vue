@@ -2,7 +2,19 @@
   <div class="view-files">
     <h1>{{ heading }}</h1>
     <p>{{ msg }}</p>
-    <div id="gallery"></div>
+    <p>
+      <input type="submit" />
+    </p>
+    <div id="gallery">
+      <img
+        v-for="image in imageJson"
+        :src="image.download_url"
+        v-show="!image.selected"
+        alt
+        class="img"
+        @click="clickHandler(image)"
+      />
+    </div>
   </div>
 </template>
 
@@ -12,31 +24,58 @@ export default {
   data() {
     return {
       heading: "View files",
-      msg: "Here are the images you uploaded:",
-      url: "Or upload from URL:"
+      msg:
+        "Here are the images you uploaded. Please select the ones you want to remove.",
+      url: "Or upload from URL:",
+      remove: "Remove",
+      imageJson: null
     };
+  },
+  methods: {
+    clickHandler: function(item) {
+      item.selected = !item.selected;
+      event.target.classList.toggle("selected");
+    }
+  },
+  mounted() {
+    var url = "https://picsum.photos/v2/list?page=2&limit=100";
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    const vueComp = this;
+    xhr.onload = function() {
+      var context = this.responseText;
+      var json = JSON.parse(context);
+      vueComp.imageJson = json;
+      vueComp.imageJson.forEach(image => {
+        image["selected"] = false;
+      });
+    };
+    xhr.onerror = "error";
+    xhr.send();
   }
 };
 
-var url = "https://picsum.photos/v2/list?page=2&limit=100";
-var xhr = new XMLHttpRequest();
-xhr.open("GET", url);
-xhr.onload = function() {
-  var context = this.responseText;
-  gallery(context);
-};
-xhr.onerror = "error";
-xhr.send();
+// var url = "https://picsum.photos/v2/list?page=2&limit=100";
+// var xhr = new XMLHttpRequest();
+// xhr.open("GET", url);
+// xhr.onload = function() {
+//   var context = this.responseText;
+//   gallery_images(context);
+// };
+// xhr.onerror = "error";
+// xhr.send();
 
-function gallery(context) {
-  var images = "";
-  var json = JSON.parse(context);
-  for (var i = 0; i < json.length; i++) {
-    images +=
-      '<span class="img"><img src="' +
-      json[i].download_url +
-      '" alt=""></span>';
-  }
-  document.getElementById("gallery").innerHTML = images;
-}
+// gallery_images(context) => {
+//   var imagesHTML = "";
+//   var json = JSON.parse(context);
+//   this.imageJson = json;
+// }
+
+// var images = document.querySelectorAll(".img");
+// Array.prototype.forEach.call(images, function(el, i) {
+//   el.addEventListener("click", function(el) {
+//     console.log("clicked");
+//     el.classList.toggle(".selected");
+//   });
+// });
 </script>
