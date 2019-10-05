@@ -1,7 +1,10 @@
 <template>
   <section class="home">
     <h1>{{ heading }}</h1>
-    <form action="/something" method="post" @submit="submitForm" novalidate="true" class="form">
+    <div>
+      <a href="/api/autodesk/signin">log in with Autodesk!</a>
+    </div>
+    <form action="/something" method="post" @submit="submitForm" novalidate="true">
       <label for="fileToUpload">{{ upload }}</label>
       <p>
         <input type="file" name="fileToUpload" id="fileToUpload" />
