@@ -1,6 +1,9 @@
 import express from 'express';
 import ForgeSDK from 'forge-apis';
 import cookieSession from 'cookie-session';
+import bodyParser from 'body-parser';
+
+import routes from './routes';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -9,13 +12,19 @@ const AUTODESK_CLIENT_ID = process.env.AUTODESK_CLIENT_ID
 const AUTODESK_CLIENT_SECRET = process.env.AUTODESK_CLIENT_SECRET
 const AUTODESK_REDIRECT_URL = process.env.AUTODESK_REDIRECT_URL
 
+app.use(bodyParser.json());
+
 app.use(cookieSession({
   name: 'session',
   keys: "blah",
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
 
-app.get('/', (req, res) => { res.send("Hello") })
+app.get('/', (req, res) => { 
+  res.send("Hello");
+})
+
+app.use('/api', routes);
 
 app.get('/auth/signin', (req, res) => {
   var autoRefresh = true;
