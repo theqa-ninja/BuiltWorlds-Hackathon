@@ -57,12 +57,12 @@ a {
 }
 
 #gallery .inner {
-    overflow-x: auto;
-    white-space: nowrap;
+    /* overflow-x: auto;
+    white-space: nowrap; */
     margin: .5rem 1rem .5rem .5rem;
 }
 
-#gallery:before {
+/* #gallery:before {
     content: '';
     position: absolute;
     width: 100px;
@@ -70,16 +70,17 @@ a {
     bottom: 0;
     right: 1rem;
     background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, .3) 100%);
-}
+} */
 
 #gallery .img {
-    width: auto;
-    height: 200px;
+    width: 20%;
+    height: auto;
     padding: 0.5rem;
     border: 1px solid transparent;
     background: #fff;
     transition: background 1s ease;
     cursor: pointer;
+    vertical-align: top;
 }
 
 #gallery .selected {
