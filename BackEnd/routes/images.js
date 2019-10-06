@@ -16,6 +16,28 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+// ../images/session/:session_id
+router.get('/session/:session_id', async (req, res, next) => {
+  try
+  {
+    var sid = req.params.session_id;
+    var temp = await images.findAll({
+      where: {
+        session_id: sid
+      }
+    });
+    res.status(200);
+    if (temp == null)
+      res.json(sid + " is not a valid session id");
+    else
+      res.json(temp);
+  }
+  catch (ex)
+  {
+    return next(ex);
+  }
+});
+
 // ../images/:image_id
 router.get('/:image_id', async (req, res, next) => {
   try
