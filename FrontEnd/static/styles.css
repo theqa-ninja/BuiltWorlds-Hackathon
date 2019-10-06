@@ -168,7 +168,7 @@ section {
 #gallery.hide-others .delete {
     display: block;
     margin: auto;
-    width: 100px;
+    width: auto;
 }
 
 #gallery.hide-others .image-wrapper {
