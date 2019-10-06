@@ -17,9 +17,9 @@
     </p>
     <div id="gallery">
       <p>
-        <button class="button delete" @click="saveImages">Keep Images</button>
+        <button class="button delete" @click="saveImages">Keep images</button>
       </p>
-      <p v-show="deleted" class="deleted hide">Removed From Current Set!</p>
+      <p v-show="deleted" class="deleted hide">Removed from current set!</p>
       <div class="inner">
         <span
           class="image-wrapper"
@@ -85,8 +85,8 @@ export default {
     saveImages: function(item) {
       document.querySelector("#gallery").classList.toggle("hide-others");
       let newImages = [];
-      this.imageJson = this.imageJson.forEach((image)=>{
-        if (image['selected'] === true){
+      this.imageJson = this.imageJson.forEach(image => {
+        if (image["selected"] === true) {
           newImages.push(image);
           image.selected = false;
         }
