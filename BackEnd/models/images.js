@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const images = sequelize.define('images', {
-    name: DataTypes.STRING,
+    filename: DataTypes.STRING,
     latitude: DataTypes.FLOAT,
     longitude: DataTypes.FLOAT,
     altitude: DataTypes.FLOAT,

@@ -1,4 +1,5 @@
 import { ExifImage } from 'exif';
+import moment from 'moment';
 
 const exifImage = (image) => {
   return new Promise((resolve, reject) => {
@@ -43,15 +44,21 @@ const parseGPS = (exif) => {
 const parseExifExistance = (exif, relations) => {
   let prevReference = exif;
   relations.forEach((key) => {
-    console.log(key, prevReference)
     if (!prevReference || !(key in prevReference))
       return null;
 
     prevReference = prevReference[key];
-    console.log(prevReference);
   });
 
   return prevReference;
+}
+
+const parseDate = (dateString) => {
+  if (!dateString)
+    return null;
+
+  const date = moment(dateString, 'YYYY:MM:DD h:mm:ss');
+  return date.toDate();
 }
 
 const extractExif = async (image) => {
@@ -65,7 +72,7 @@ const extractExif = async (image) => {
       longitude: lla ? lla.longitude : null,
       make: parseExifExistance(exif, ['image', 'Make']),
       model: parseExifExistance(exif, ['image', 'Model']),
-      createdAt: parseExifExistance(exif, ['exif', 'CreateDate']),
+      createdAt: parseDate(parseExifExistance(exif, ['exif', 'CreateDate'])),
       exif
     }
   } catch (e) {

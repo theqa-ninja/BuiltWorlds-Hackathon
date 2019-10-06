@@ -1,5 +1,6 @@
 import { extractExif } from './exif';
 import { images, clusters } from '../models';
+import {kMeans} from '../utility/kMeans';
 import axios from 'axios';
 import asyncPool from "tiny-async-pool";
 
@@ -44,27 +45,41 @@ const processExifAndVision = async (image) => {
       processVision(image)
     ]);
 
-    // images.create({
-    //   name,
+    const newImage = {
+      id: Math.floor(Math.random()*100000)
+    }
+
+    console.log(newImage);
+    // const newImage = await images.create({
+    //   filename: name,
     //   latitude: exif.altitude,
     //   longitude: exif.longitude,
     //   altitude: exif.altitude,
+    //   make: exif.make,
+    //   model: exif.model,
+    //   exif,
     //   session_id: sessionId,
     //   url,
-    //   created_at:
-    // })
-
-    // TODO: Save to DB
-    // console.log(exif, tags);
+    //   created_at: new Date(exif.createdAt)
+    // });
 
     return {
-      imageId: null,
+      imageId: newImage.id,
       name,
+      lla: [
+        exif.latitude ? exif.latitude : 0,
+        exif.longitude? exif.longitude : 0,
+        exif.altitude ? exif.altitude : 0
+      ],
+      make: exif.make,
+      model: exif.model,
       exif
     };
   } catch (e) {
     console.error(e);
-    return null;
+    return {
+      lla: [0,0,0] 
+    };
   }
 }
 
@@ -76,11 +91,14 @@ const processImages = async (images, sessionId, token=null) => {
     return image;
   })
 
-  images = [images[0]];
+  // images = images.slice(0,10);
 
   const payload = await asyncPool(3, images, processExifAndVision);
 
-  console.log(payload);
+  console.log('????');
+  const results = kMeans(payload, Math.floor(Math.sqrt(payload.length / 2)), 2);
+  console
+  console.log(results);
 
   // TODO: Hook up k-means here
   return payload;
