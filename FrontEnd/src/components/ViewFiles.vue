@@ -24,7 +24,7 @@
         <span
           class="image-wrapper"
           v-for="image in imageJson"
-          :id="image['_id']"
+          :id="image['image_id']"
           :class="image.selected? 'selected' : ''"
         >
           <button class="enlarge" @click="enlargeImage(image)" title="enlarge">+</button>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: "ViewFiles",
   data() {
@@ -102,7 +103,7 @@ export default {
       this.countSelectedItems();
     },
     enlargeImage(image) {
-      window.location.href = "#" + image["_id"];
+      window.location.href = "#" + image["image_id"];
     },
     closeImage(image) {
       window.location.href = "#";
@@ -135,30 +136,48 @@ export default {
       this.counter = this.countSelectedItems();
     }
   },
-  mounted() {
-    let url = "https://picsum.photos/v2/list?page=2&limit=100";
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
-    const vueComp = this;
-    xhr.onload = function() {
-      let context = this.responseText;
-      let json = JSON.parse(context);
-      // note - created temp solution to simulate possible input
-      let count = 0;
-      json.forEach(image => {
-        image["_id"] = "img" + count;
-        count++;
-        image["selected"] = false;
-        image["deleted"] = false;
-        image["clusterId"] = Math.floor(
-          Math.random() * Math.floor(vueComp.clusterNum)
-        );
-      });
+  async mounted() {
+    const sessionId = this.$store.getters.sessionId;
+    let url = "/api/images/session/" + sessionId;
+    debugger;
+    const result = await axios.get(url);
+    let clusterIds = [];
+    result.forEach(image=>{
+      if (clusterIds.includes(image['cluster_id']) && image['cluster_id']){
+        clusterIds.push(image['cluster_id'])
+      }
+    })
+    // sort clusterIds
+    clusterIds.sort();
+    clusterIds.reverse();
 
-      vueComp.assignImageToCluster(json);
-    };
-    xhr.onerror = "error";
-    xhr.send();
+    let clusterIdToIndex = {};
+    for (let i =0; i<clusterIds.length; i++){
+      let clusterId = clusterIds[i];
+      clusterIdToIndex[clusterId] = i+1;
+    }
+
+    let images = Array(clusterIds.length + 1);
+
+    for (let i =0; i<clusterIds.length+1; i++){
+      images[i] = [];
+    }
+
+    let count = 0;
+    result.forEach(image => {
+      image["image_id"] = "img" + count;
+      count++;
+      image["selected"] = false;
+      image["deleted"] = false;
+
+      if (!image['cluster_id']) {
+        image["clusterId"] = 0;
+      } else {
+        image["clusterId"] = clusterIdToIndex[image['cluster_id']];
+      }
+    });
+
+      this.assignImageToCluster(json);
   }
 };
 </script>
