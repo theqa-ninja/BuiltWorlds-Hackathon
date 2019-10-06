@@ -18,7 +18,7 @@
       <p>
         <button class="button delete" @click="deleteImages">Delete</button>
       </p>
-      <p v-show="deleted" class="deleted hide">Deleted!</p>
+      <p v-show="deleted" class="deleted hide">Hidden!</p>
       <div class="inner">
         <img
           v-lazyload
@@ -46,7 +46,7 @@ export default {
       remove: "Remove",
       imageJson: [],
       counter: 0,
-      deleted: "Deleted!",
+      deleted: false,
       imageJson: [],
       clusters: [
         { text: "Cluster 1", value: "cluster-1" },
