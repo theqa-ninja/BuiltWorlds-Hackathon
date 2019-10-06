@@ -9,10 +9,18 @@ const AUTODESK_REDIRECT_URL = process.env.AUTODESK_REDIRECT_URL
 
 const router = express.Router();
 
+/**
+ * Entry point for oauth workflow. Redirect the user to the forge API
+ * for them to approve us getting access to their data.
+ */
 router.get('/signin', async (req, res) => {
   res.redirect(302, oauthClient().generateAuthUrl());
 });
 
+/**
+ * The user is returned here with an auth code we
+ * can use to make access tokens.
+ */
 router.get('/callback', (req, res) => {
     oauthClient().getToken(req.query.code).then( (credentials) => {
         req.session.credentials['autodesk'] = credentials;
@@ -27,6 +35,10 @@ router.get('/callback', (req, res) => {
     });
 });
 
+/**
+ * Given a token this will return a list of hubs that
+ * token has access to.
+ */
 router.get('/hubs', (req, res) => {
   const HubsApi = new ForgeSDK.HubsApi();
   const credentials = req.session.credentials['autodesk'];
@@ -37,6 +49,10 @@ router.get('/hubs', (req, res) => {
   }).catch(e => {res.send(e)})
 })
 
+/**
+ * With the ID of the hub they wish to use we can get
+ * a list of projects the user has access to within that hub.
+ */
 router.get('/hub/:hub_id', (req, res) => {
   const ProjectsApi = new ForgeSDK.ProjectsApi();
   const credentials = req.session.credentials['autodesk'];
@@ -48,6 +64,9 @@ router.get('/hub/:hub_id', (req, res) => {
   }).catch(e => {res.send(e)})
 })
 
+/**
+ * Within the project that's in the hub there are folders.
+ */
 router.get('/hub/:hub_id/project/:project_id', (req, res) => {
   const ProjectsApi = new ForgeSDK.ProjectsApi();
   const credentials = req.session.credentials['autodesk'];
@@ -64,6 +83,10 @@ router.get('/hub/:hub_id/project/:project_id', (req, res) => {
 // project b.b91369c2-d2a2-423c-9755-14d71f38ed96
 // folder urn:adsk.wipprod:fs.folder:co.DYVvlgcjSfutU4PkWyTtSQ
 // curl http://localhost:3000/api/autodesk/project/b.b91369c2-d2a2-423c-9755-14d71f38ed96/folder/urn:adsk.wipprod:fs.folder:co.DYVvlgcjSfutU4PkWyTtSQ
+/**
+ * Within the folders we find the images we're looking for.
+ * This method can also kick of the ingestion process.
+ */
 router.get('/project/:project_id/folder/:folder_id', (req, res) => {
   const FoldersApi = new ForgeSDK.FoldersApi();
   const credentials = req.session.credentials['autodesk'];
@@ -92,6 +115,10 @@ router.get('/project/:project_id/folder/:folder_id', (req, res) => {
   });
 });
 
+/**
+ * If we need detailed information about an individual
+ * image this is how we get it.
+ */
 router.get('/project/:project_id/item/:item_id', (req, res) => {
   const ItemsApi = new ForgeSDK.ItemsApi();
   const credentials = req.session.credentials['autodesk'];
@@ -109,6 +136,11 @@ router.get('/project/:project_id/item/:item_id', (req, res) => {
   });
 });
 
+/**
+ * Autodesk generates thumbnails of the images, we can't
+ * sign a URL for the user to download but we can proxy
+ * the images back to the client.
+ */
 router.get('/project/:project_id/item/:item_id/thumbnail', (req, res, next) => {
   const ItemsApi = new ForgeSDK.ItemsApi();
   const credentials = req.session.credentials['autodesk'];
@@ -141,6 +173,10 @@ router.get('/project/:project_id/item/:item_id/thumbnail', (req, res, next) => {
   });
 });
 
+/**
+ * oauthClient is the base client for accessing
+ * the forge API.
+ */
 function oauthClient() {
   return new ForgeSDK.AuthClientThreeLegged(
       AUTODESK_CLIENT_ID,
