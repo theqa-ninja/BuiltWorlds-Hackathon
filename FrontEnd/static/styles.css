@@ -75,10 +75,12 @@ section {
 
 #gallery .inner {
     margin: .5rem;
+    column-count: 5;
+    column-gap: 0;
 }
 
 #gallery .img {
-    width: 20%;
+    width: 100%;
     height: auto;
     padding: 0.5rem;
     border: 1px solid transparent;
@@ -213,8 +215,8 @@ input[type="text"]:focus {
 }
 
 @media (max-width: 900px) {
-    #gallery .img {
-        width: 25%;
+    #gallery .inner {
+        column-count: 4;
     }
 }
 
@@ -223,7 +225,7 @@ input[type="text"]:focus {
         font-size: 14px;
     }
 
-    #gallery .img {
-        width: 33%;
+    #gallery .inner {
+        column-count: 3;
     }
 }
