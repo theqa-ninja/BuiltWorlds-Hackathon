@@ -32,7 +32,6 @@ app.use(function (req, res, next) {
       expires_at: '2019-10-06T17:40:48.706Z'
     }
   }
-
   next()
 });
 
