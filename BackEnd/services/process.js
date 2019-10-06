@@ -45,23 +45,23 @@ const processExifAndVision = async (image) => {
       processVision(image)
     ]);
 
-    const newImage = {
-      id: Math.floor(Math.random()*100000)
-    }
+    // const newImage = {
+    //   id: Math.floor(Math.random()*100000)
+    // }
+    // console.log(newImage);
 
-    console.log(newImage);
-    // const newImage = await images.create({
-    //   filename: name,
-    //   latitude: exif.altitude,
-    //   longitude: exif.longitude,
-    //   altitude: exif.altitude,
-    //   make: exif.make,
-    //   model: exif.model,
-    //   exif,
-    //   session_id: sessionId,
-    //   url,
-    //   created_at: new Date(exif.createdAt)
-    // });
+    const newImage = await images.create({
+      filename: name,
+      latitude: exif.altitude,
+      longitude: exif.longitude,
+      altitude: exif.altitude,
+      make: exif.make,
+      model: exif.model,
+      exif,
+      session_id: sessionId,
+      url,
+      created_at: new Date(exif.createdAt)
+    });
 
     return {
       imageId: newImage.id,
