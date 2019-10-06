@@ -90,6 +90,8 @@ router.get('/hub/:hub_id/project/:project_id', (req, res) => {
 router.get('/project/:project_id/folder/:folder_id', (req, res) => {
   const FoldersApi = new ForgeSDK.FoldersApi();
   const credentials = req.session.credentials['autodesk'];
+  // TODO: Create session Id on import process
+  const sessionId = 1;
 
   const projectId = req.params['project_id'];
   const folderId = req.params['folder_id'];
@@ -106,7 +108,7 @@ router.get('/project/:project_id/folder/:folder_id', (req, res) => {
           }
       });
 
-//      processImages(items, credentials['access_token']);
+      processImages(items, sessionId, credentials['access_token']);
 
       res.json(items)
   }).catch(e => {

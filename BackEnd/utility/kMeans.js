@@ -102,14 +102,19 @@ function moveMeans(data, means, dataExtremes, dataRange, assignments) {
   return moved;
 }
 
-export const kMeans = (data, k, interations)=>{
-  const dataExtremes = getDataExtremes(data);
-  const dataRange = getDataRanges(dataExtremes);
-  let means = initMeans(k, dataExtremes, dataRange);
+export const kMeans = (points, k, interations)=>{
+	let data = [];
+	points.forEach(point => {
+		data.push(point.lla);
+	});
+
+	const dataExtremes = getDataExtremes(data);
+	const dataRange = getDataRanges(dataExtremes);
+	let means = initMeans(k, dataExtremes, dataRange);
   let assignments = Array( data.length );
 
   for (let step = 0; step < interations; step++){
-    let moved = moveMeans(data, means, dataExtremes, dataRange, assignments);
+		let moved = moveMeans(data, means, dataExtremes, dataRange, assignments);
     if (!moved) {
       break;
     }
@@ -121,7 +126,7 @@ export const kMeans = (data, k, interations)=>{
     if (typeof(results[label]) === 'undefined'){
       results[label] = [];
     }
-    results[label].push(data[i]);
+    results[label].push(points[i]);
   }
   return results;
 }
