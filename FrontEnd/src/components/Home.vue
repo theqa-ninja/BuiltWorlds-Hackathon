@@ -4,7 +4,7 @@
     <form action="/something" method="post" @submit="submitForm" novalidate="true" class="form">
       <label for="fileToUpload">Import from BIM360</label>
       <p>
-        <a href="/api/autodesk/signin/"
+        <a href="/api/autodesk/signin/"/>
         <input type="submit" name="submit" value="Redirect" class="button" />
       </p>
       <hr />
