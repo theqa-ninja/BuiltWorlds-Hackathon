@@ -111,6 +111,17 @@ a {
     animation-iteration-count: 1;
 }
 
+.select-wrapper form {
+    display: inline-block;
+    width: 50%;
+}
+
+.select-menu {
+    padding: .6rem;
+    font-size: 1rem;
+    width: 100%;
+}
+
 @keyframes showhide {
     from {
         color: #222;
@@ -142,6 +153,12 @@ input[type="text"] {
     max-width: 70%;
     padding: 0.5rem;
     border: 1px solid #ddd;
+    font-size: 16px;
+    /* for mobile to not zoom in */
+}
+
+input[type="text"]:focus {
+    border: 1px solid #42b983;
 }
 
 .button {
@@ -177,6 +194,7 @@ input[type="text"] {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    line-height: 1.6;
     margin-top: 60px;
 }
 
