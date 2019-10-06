@@ -13,13 +13,13 @@
       <button class="button" @click="hideNotSelected">Toggle select</button>
     </div>
     <p>
-      <span class="counter">{{ counter }} images</span>
+      <span class="counter">{{ counter }} images selected</span>
     </p>
     <div id="gallery">
       <p>
-        <button class="button delete" @click="deleteImages">Delete</button>
+        <button class="button delete" @click="saveImages">Keep Images</button>
       </p>
-      <p v-show="deleted" class="deleted hide">Removed From Cureent Set!</p>
+      <p v-show="deleted" class="deleted hide">Removed From Current Set!</p>
       <div class="inner">
         <img
           v-lazyload
@@ -43,7 +43,7 @@ export default {
     return {
       heading: "View files",
       msg:
-        "Here are the images you uploaded. Please select the ones you want to remove.",
+        "Here are the images you uploaded. Please select the ones you want to view.",
       url: "Or upload from URL:",
       remove: "Remove",
       clusteredImages: [],
@@ -75,18 +75,13 @@ export default {
     hideNotSelected(item) {
       document.querySelector("#gallery").classList.toggle("hide-others");
     },
-    deleteImages: function(item) {
+    saveImages: function(item) {
       document.querySelector("#gallery").classList.toggle("hide-others");
-      // var selected = document.querySelectorAll(".selected");
-      // debugger
-      // Array.prototype.forEach.call(selected, function(el, i) {
-      //   el.parentNode.removeChild(el);
-      // });
-
       let newImages = [];
       this.imageJson = this.imageJson.forEach((image)=>{
-        if (image['selected'] === false){
+        if (image['selected'] === true){
           newImages.push(image);
+          image.selected = false;
         }
       });
       this.imageJson = newImages;

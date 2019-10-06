@@ -2,14 +2,14 @@
   <section class="home">
     <h1>{{ heading }}</h1>
     <form action="/something" method="post" @submit="submitForm" novalidate="true" class="form">
-      <label for="fileToUpload">{{ upload }}</label>
+      <label for="fileToUpload">Import from BIM360</label>
       <p>
-        <input type="file" name="fileToUpload" id="fileToUpload" />
+        <input type="submit" name="submit" value="Go!" class="button" />
       </p>
       <hr />
-      <label for="url">{{ url }}</label>
+      <label for="url">Enter Session ID</label>
       <p>
-        <input type="text" name="url" placeholder="https://" />
+        <input type="text" name="url" placeholder="" />
       </p>
       <p>
         <input type="submit" name="submit" value="Go!" class="button" />
