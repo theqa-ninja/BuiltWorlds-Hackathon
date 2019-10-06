@@ -21,7 +21,12 @@
       </p>
       <p v-show="deleted" class="deleted hide">Removed From Current Set!</p>
       <div class="inner">
-        <span class="image-wrapper" v-for="image in imageJson" :id="image['_id']">
+        <span
+          class="image-wrapper"
+          v-for="image in imageJson"
+          :id="image['_id']"
+          :class="image.selected? 'selected' : ''"
+        >
           <button class="enlarge" @click="enlargeImage(image)" title="enlarge">+</button>
           <button class="close" @click="closeImage(image)" title="close">&times;</button>
           <img
@@ -30,7 +35,6 @@
             :data-src="image.download_url"
             alt
             class="img"
-            :class="image.selected? 'selected' : ''"
             @click="clickHandler(image)"
           />
         </span>

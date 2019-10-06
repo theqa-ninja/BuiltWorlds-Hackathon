@@ -110,7 +110,7 @@ section {
     vertical-align: top;
 }
 
-#gallery .selected {
+#gallery .selected img {
     background: yellow;
     border: 1px solid #fff;
     transition: all 1s ease;
@@ -173,7 +173,7 @@ section {
 }
 
 #gallery.hide-others .selected {
-    display: inline;
+    display: inline-block;
 }
 
 input[type="text"] {
