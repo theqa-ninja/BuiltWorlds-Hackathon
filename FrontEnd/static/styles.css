@@ -70,10 +70,11 @@ section {
 
 #gallery {
     position: relative;
+    text-align: left;
 }
 
 #gallery .inner {
-    margin: .5rem 1rem .5rem .5rem;
+    margin: .5rem;
 }
 
 #gallery .img {
