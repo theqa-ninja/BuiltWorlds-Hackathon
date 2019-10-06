@@ -3,6 +3,9 @@ import ForgeSDK from 'forge-apis';
 import { processImages } from '../services';
 import axios from 'axios';
 
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.json')[env];
+
 const AUTODESK_CLIENT_ID = process.env.AUTODESK_CLIENT_ID
 const AUTODESK_CLIENT_SECRET = process.env.AUTODESK_CLIENT_SECRET
 const AUTODESK_REDIRECT_URL = process.env.AUTODESK_REDIRECT_URL
@@ -33,6 +36,12 @@ router.get('/callback', (req, res) => {
         console.error(e);
         res.send("login failed");
     });
+});
+
+router.get('/token', (req, res) => {
+  const credentials = req.session.credentials['autodesk'];
+
+  res.json({access_token: credentials['access_token']});
 });
 
 /**
@@ -98,17 +107,18 @@ router.get('/project/:project_id/folder/:folder_id', (req, res) => {
 
   FoldersApi.getFolderContents(projectId, folderId, {}, oauthClient(), credentials).then( (contents) => {
       const itemsData = contents.body['data'];
-
       const items = itemsData.
         map((d) => {
+          const link = `${config.baseurl}/api/autodesk/project/${projectId}/item/${d['id']}/thumbnail`;
           return {
-            link: d['links']['self']['href'],
+            link: link,
             name: d['attributes']['displayName'],
+            project: projectId,
             id: d['id']
           }
       });
 
-      processImages(items, sessionId, credentials['access_token']);
+//      processImages(items, sessionId, credentials['access_token']);
 
       res.json(items)
   }).catch(e => {
@@ -144,7 +154,7 @@ router.get('/project/:project_id/item/:item_id', (req, res) => {
  * the images back to the client.
  */
 router.get('/project/:project_id/item/:item_id/thumbnail', (req, res, next) => {
-  const ItemsApi = new ForgeSDK.ItemsApi();
+  const DerivativesApi = new ForgeSDK.DerivativesApi();
   const credentials = req.session.credentials['autodesk'];
 
   const projectId = req.params['project_id'];

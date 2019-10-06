@@ -6,6 +6,10 @@ body {
     border-top: 10px solid #42b983;
     margin: 0;
     padding: 0;
+    height: 100%;
+}
+html {
+    height: 100%;
 }
 
 .logo {
@@ -66,26 +70,32 @@ section {
 
 #gallery {
     position: relative;
+    text-align: left;
 }
 
 #gallery .inner {
-    /* overflow-x: auto;
-    white-space: nowrap; */
-    margin: .5rem 1rem .5rem .5rem;
+    margin: .5rem;
+    column-count: 5;
+    column-gap: 0;
 }
-
-/* #gallery:before {
-    content: '';
+#gallery .image-wrapper {
+    display: inline-block;
+    position: relative;
+}
+#gallery .enlarge {
     position: absolute;
-    width: 100px;
-    top: 0;
-    bottom: 0;
-    right: 1rem;
-    background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, .3) 100%);
-} */
-
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255, .9);
+    border: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 0px;
+    font-size: 1rem;
+    cursor: pointer;
+}
 #gallery .img {
-    width: 20%;
+    width: 100%;
     height: auto;
     padding: 0.5rem;
     border: 1px solid transparent;
@@ -209,6 +219,10 @@ input[type="text"]:focus {
     color: #2c3e50;
     line-height: 1.6;
     margin-top: 60px;
+    padding: 0 0 200px;
+    background: url(skyline.svg) center bottom no-repeat;
+    border-bottom: 2px solid #42b983;
+    min-height: 92.4%;
 }
 
 .hide {
@@ -216,17 +230,69 @@ input[type="text"]:focus {
 }
 
 @media (max-width: 900px) {
-    #gallery .img {
-        width: 25%;
+    #gallery .inner {
+        column-count: 4;
     }
 }
-
+@media (max-width: 750px) {
+    #gallery .inner {
+        column-count: 3;
+    }
+}
 @media (max-width: 600px) {
     html {
         font-size: 14px;
     }
 
-    #gallery .img {
-        width: 33%;
+    #gallery .inner {
+        column-count: 2;
     }
+}
+
+@media (max-width: 400px) {
+    #gallery .inner {
+        column-count: 1;
+    }
+}
+
+/* lightbox */
+.close {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255, .9);
+    border: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 0px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+#gallery :target {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,.8);
+    z-index: 10;
+}
+#gallery :target .enlarge {
+    display: none;
+}
+#gallery :target .close {
+    display: block;
+    font-size: 2rem;
+}
+#gallery :target img {
+    width: auto;
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
