@@ -52,6 +52,10 @@ a {
     color: #42b983;
 }
 
+section {
+    margin: 0 1rem;
+}
+
 #gallery {
     position: relative;
 }
@@ -201,4 +205,20 @@ input[type="text"]:focus {
 
 .hide {
     /* display: none; */
+}
+
+@media (max-width: 900px) {
+    #gallery .img {
+        width: 25%;
+    }
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 14px;
+    }
+
+    #gallery .img {
+        width: 33%;
+    }
 }
