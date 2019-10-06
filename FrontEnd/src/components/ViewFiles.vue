@@ -9,18 +9,16 @@
           <option v-for="cluster in clusters" :value="cluster.value">{{ cluster.text }}</option>
         </select>
       </form>
-      <button class="button" @click="hideNotSelected">Toggle Select</button>
+      <button class="button" @click="hideNotSelected">Toggle select</button>
     </div>
     <p>
-      <span class="counter">{{ counter }}</span>
+      <span class="counter">{{ counter }} images</span>
     </p>
     <div id="gallery">
       <p>
         <button class="button delete" @click="deleteImages">Delete</button>
       </p>
-      <p 
-        v-show='deleted'
-        class="deleted hide">Deleted!</p>
+      <p v-show="deleted" class="deleted hide">Deleted!</p>
       <div class="inner">
         <img
           v-lazyload
@@ -50,7 +48,6 @@ export default {
       counter: 0,
       deleted: "Deleted!",
       imageJson: [],
-      counter: 0,
       clusters: [
         { text: "Cluster 1", value: "cluster-1" },
         { text: "Cluster 2", value: "cluster-2" },
@@ -75,12 +72,11 @@ export default {
       Array.prototype.forEach.call(selected, function(el, i) {
         el.parentNode.removeChild(el);
       });
-      // document.querySelector(".deleted").classList.remove("hide");
-      if (this.timerId !== null){
+      if (this.timerId !== null) {
         clearTimeout(this.timerId);
       }
       this.deleted = true;
-      this.timerId = setTimeout(()=>{
+      this.timerId = setTimeout(() => {
         this.deleted = false;
       }, 2000);
     },
@@ -91,13 +87,6 @@ export default {
       });
       this.counter = count;
     }
-  },
-  computed: {
-    // counter: function() {
-    //   this.imageJson.reduce(image=>{
-    //     image.selected === true
-    //   })
-    // },
   },
   mounted() {
     var url = "https://picsum.photos/v2/list?page=2&limit=100";
