@@ -68,6 +68,11 @@ section {
     margin: 0 1rem;
 }
 
+.quickref{
+    width: 106px;
+    height: 41px;
+    position: absolute;
+}
 #gallery {
     position: relative;
     text-align: left;
