@@ -129,6 +129,7 @@ section {
 #gallery .deleted {
     color: transparent;
     padding: .5rem 1rem;
+    text-align: center;
     position: fixed;
     top: 0;
     left: 0;
