@@ -23,15 +23,15 @@ app.use(function (req, res, next) {
       req.session.credentials = {}
   }
 
-  if(env == 'development') {
-    req.session.credentials['autodesk'] = {
-      access_token: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJ1c2VyaWQiOiJKN1FVSjVUTjhTQVQiLCJleHAiOjE1NzAzNzQ3OTUsInNjb3BlIjpbInVzZXItcHJvZmlsZTpyZWFkIiwiZGF0YTpzZWFyY2giLCJkYXRhOnJlYWQiLCJidWNrZXQ6cmVhZCIsImFjY291bnQ6cmVhZCIsInZpZXdhYmxlczpyZWFkIl0sImNsaWVudF9pZCI6ImFVakdBR1FKdlc0ak9qQXA3RHQ0bEFNRVB6Q2ZxYll1IiwiZ3JhbnRfaWQiOiJKSFlCdDlGeExBZ2ZFQUZIenE4MUxGM0VXcmlrTm5jaCIsImF1ZCI6Imh0dHBzOi8vYXV0b2Rlc2suY29tL2F1ZC9qd3RleHA2MCIsImp0aSI6InhmYTBxeE40YXNDdHpMQ2xPMEt1NTJxdVV1MlAwcTk5Q1FkcjZUN2VFQU5LWDJhMkJ4Wkx6UnZveTIwZUlQRVEifQ.LFl8R-mdM0oxGN5VTpvytWNNcAbDIqjp6gzm5SUxUdw',
-      refresh_token: '7Grx2bx4Q0nCgSDk8xXzlLlCM90dtAPRmv3Tp5myUM',
-      token_type: 'Bearer',
-      expires_in: 3599,
-      expires_at: '2019-10-06T15:13:14.427Z'
-    }
-  }
+  // if(env == 'development') {
+  //   req.session.credentials['autodesk'] = {
+  //     access_token: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJ1c2VyaWQiOiJKN1FVSjVUTjhTQVQiLCJleHAiOjE1NzAzNzQ3OTUsInNjb3BlIjpbInVzZXItcHJvZmlsZTpyZWFkIiwiZGF0YTpzZWFyY2giLCJkYXRhOnJlYWQiLCJidWNrZXQ6cmVhZCIsImFjY291bnQ6cmVhZCIsInZpZXdhYmxlczpyZWFkIl0sImNsaWVudF9pZCI6ImFVakdBR1FKdlc0ak9qQXA3RHQ0bEFNRVB6Q2ZxYll1IiwiZ3JhbnRfaWQiOiJKSFlCdDlGeExBZ2ZFQUZIenE4MUxGM0VXcmlrTm5jaCIsImF1ZCI6Imh0dHBzOi8vYXV0b2Rlc2suY29tL2F1ZC9qd3RleHA2MCIsImp0aSI6InhmYTBxeE40YXNDdHpMQ2xPMEt1NTJxdVV1MlAwcTk5Q1FkcjZUN2VFQU5LWDJhMkJ4Wkx6UnZveTIwZUlQRVEifQ.LFl8R-mdM0oxGN5VTpvytWNNcAbDIqjp6gzm5SUxUdw',
+  //     refresh_token: '7Grx2bx4Q0nCgSDk8xXzlLlCM90dtAPRmv3Tp5myUM',
+  //     token_type: 'Bearer',
+  //     expires_in: 3599,
+  //     expires_at: '2019-10-06T15:13:14.427Z'
+  //   }
+  // }
 
   next()
 });
