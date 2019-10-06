@@ -6,6 +6,10 @@ body {
     border-top: 10px solid #42b983;
     margin: 0;
     padding: 0;
+    height: 100%;
+}
+html {
+    height: 100%;
 }
 
 .logo {
@@ -69,20 +73,8 @@ section {
 }
 
 #gallery .inner {
-    /* overflow-x: auto;
-    white-space: nowrap; */
     margin: .5rem 1rem .5rem .5rem;
 }
-
-/* #gallery:before {
-    content: '';
-    position: absolute;
-    width: 100px;
-    top: 0;
-    bottom: 0;
-    right: 1rem;
-    background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, .3) 100%);
-} */
 
 #gallery .img {
     width: 20%;
@@ -209,6 +201,10 @@ input[type="text"]:focus {
     color: #2c3e50;
     line-height: 1.6;
     margin-top: 60px;
+    padding: 0 0 200px;
+    background: url(skyline.svg) center bottom no-repeat;
+    border-bottom: 2px solid #42b983;
+    min-height: 92.4%;
 }
 
 .hide {
