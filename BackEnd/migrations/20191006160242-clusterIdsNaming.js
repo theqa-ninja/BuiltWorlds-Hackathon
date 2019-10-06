@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.addColumn(
       'clusters',
-      'generated_ids',
+      'generated_id',
       Sequelize.INTEGER
     );
   },
@@ -12,7 +12,7 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     return queryInterface.removeColumn(
       'clusters',
-      'generated_ids',
+      'generated_id',
       Sequelize.INTEGER
     );
   }
