@@ -21,16 +21,19 @@
       </p>
       <p v-show="deleted" class="deleted hide">Removed From Current Set!</p>
       <div class="inner">
-        <img
-          v-lazyload
-          v-for="image in imageJson"
-          src
-          :data-src="image.download_url"
-          alt
-          class="img"
-          :class="image.selected? 'selected' : ''"
-          @click="clickHandler(image)"
-        />
+        <span class="image-wrapper" v-for="image in imageJson" :id="image['_id']">
+          <button class="enlarge" @click="enlargeImage(image)">+</button>
+          <button class="close" @click="closeImage(image)">&times;</button>
+          <img
+            v-lazyload
+            src
+            :data-src="image.download_url"
+            alt
+            class="img"
+            :class="image.selected? 'selected' : ''"
+            @click="clickHandler(image)"
+          />
+        </span>
       </div>
     </div>
   </section>
@@ -61,7 +64,7 @@ export default {
         { text: "Cluster 5", value: 5 },
         { text: "Cluster 6", value: 6 },
         { text: "Cluster 7", value: 7 },
-        { text: "Cluster 8", value: 8 },
+        { text: "Cluster 8", value: 8 }
       ],
       selected: null,
       timerId: null
@@ -94,27 +97,33 @@ export default {
       }, 2000);
       this.countSelectedItems();
     },
+    enlargeImage(image) {
+      window.location.href = "#" + image["_id"];
+    },
+    closeImage(image) {
+      window.location.href = "#";
+    },
     countSelectedItems() {
       let count = 0;
-      this.imageJson.forEach((image) => {
+      this.imageJson.forEach(image => {
         count += image.selected;
       });
       this.counter = count;
     },
-    assignImageToCluster(arr){
+    assignImageToCluster(arr) {
       this.clusteredImages = Array(this.clusterNum);
-      arr.forEach(elem=>{
-        if (typeof(this.clusteredImages[elem.clusterId]) === 'undefined'){
+      arr.forEach(elem => {
+        if (typeof this.clusteredImages[elem.clusterId] === "undefined") {
           this.clusteredImages[elem.clusterId] = [];
         }
         this.clusteredImages[elem.clusterId].push(elem);
       });
     },
-    onClusterChange(){
-      if (event.target.value === 'None selected' ){
+    onClusterChange() {
+      if (event.target.value === "None selected") {
         return;
       }
-      if (Number.isInteger(this.currentCluster)){
+      if (Number.isInteger(this.currentCluster)) {
         this.clusteredImages[this.currentCluster] = this.imageJson;
       }
       this.currentCluster = parseInt(event.target.value);
@@ -131,10 +140,15 @@ export default {
       let context = this.responseText;
       let json = JSON.parse(context);
       // note - created temp solution to simulate possible input
+      let count = 0;
       json.forEach(image => {
+        image["_id"] = "img" + count;
+        count++;
         image["selected"] = false;
-        image['deleted'] = false;
-        image['clusterId'] = Math.floor(Math.random() * Math.floor(vueComp.clusterNum))
+        image["deleted"] = false;
+        image["clusterId"] = Math.floor(
+          Math.random() * Math.floor(vueComp.clusterNum)
+        );
       });
 
       vueComp.assignImageToCluster(json);
