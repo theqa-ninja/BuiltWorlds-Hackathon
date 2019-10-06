@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     created_at: DataTypes.DATE,
     make: DataTypes.TEXT,
     model: DataTypes.TEXT,
+    thumbnail: DataTypes.STRING,
     isDeleted: DataTypes.BOOLEAN,
     exif: DataTypes.JSON
   }, {});

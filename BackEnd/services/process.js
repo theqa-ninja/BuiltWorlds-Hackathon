@@ -34,7 +34,7 @@ const processVision = async (image) => {
 }
 
 const processExifAndVision = async (image) => {
-  const { link:metadataLink, name, token, sessionId} = image;
+  const { metadataLink, name, token, sessionId} = image;
 
   try {
     const url = await fetchImageMetaData(metadataLink, token);
