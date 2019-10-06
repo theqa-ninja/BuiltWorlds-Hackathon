@@ -163,7 +163,7 @@ section {
     display: inline-block;
 }
 
-#gallery.hide-others .img {
+#gallery.hide-others .image-wrapper {
     display: none;
 }
 
