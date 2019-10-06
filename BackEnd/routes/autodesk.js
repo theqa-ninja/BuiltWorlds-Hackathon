@@ -112,13 +112,14 @@ router.get('/project/:project_id/folder/:folder_id', (req, res) => {
           const link = `${config.baseurl}/api/autodesk/project/${projectId}/item/${d['id']}/thumbnail`;
           return {
             link: link,
+            metadataLink: d['links']['self']['href'],
             name: d['attributes']['displayName'],
             project: projectId,
             id: d['id']
           }
       });
 
-//      processImages(items, sessionId, credentials['access_token']);
+     processImages(items, sessionId, credentials['access_token']);
 
       res.json(items)
   }).catch(e => {

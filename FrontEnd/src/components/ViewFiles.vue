@@ -17,9 +17,9 @@
     </p>
     <div id="gallery">
       <p>
-        <button class="button delete" @click="saveImages">Keep Images</button>
+        <button class="button delete" @click="saveImages">Keep images</button>
       </p>
-      <p v-show="deleted" class="deleted hide">Removed From Current Set!</p>
+      <p v-show="deleted" class="deleted hide">Removed from current set!</p>
       <div class="inner">
         <span
           class="image-wrapper"
@@ -51,7 +51,7 @@ export default {
     return {
       heading: "View files",
       msg:
-        "Here are the images you uploaded. Please select the ones you want to view.",
+        'Here are the images you uploaded. Please select the ones you want to keep. You may view larger versions of each image by clicking on the "+" button.',
       url: "Or upload from URL:",
       remove: "Remove",
       clusteredImages: [],
@@ -86,8 +86,8 @@ export default {
     saveImages: function(item) {
       document.querySelector("#gallery").classList.toggle("hide-others");
       let newImages = [];
-      this.imageJson = this.imageJson.forEach((image)=>{
-        if (image['selected'] === true){
+      this.imageJson = this.imageJson.forEach(image => {
+        if (image["selected"] === true) {
           newImages.push(image);
           image.selected = false;
         }
