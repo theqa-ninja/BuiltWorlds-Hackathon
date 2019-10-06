@@ -19,7 +19,8 @@
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.19.3",
     "vue": "^2.5.2",
-    "vue-tiny-lazyload-img": "^0.1.0"
+    "vue-tiny-lazyload-img": "^0.1.0",
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -57,8 +58,7 @@
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^3.5.2",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^2.9.1",
+    "webpack-dev-server": "2.9.1",
     "webpack-merge": "^4.1.0"
   },
   "engines": {
