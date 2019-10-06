@@ -6,12 +6,13 @@
       <p>
         <input type="file" name="fileToUpload" id="fileToUpload" />
       </p>
+      <hr />
       <label for="url">{{ url }}</label>
       <p>
         <input type="text" name="url" placeholder="https://" />
       </p>
       <p>
-        <input type="submit" name="submit" value="submit" class="button" />
+        <input type="submit" name="submit" value="Go!" class="button" />
       </p>
     </form>
   </section>
@@ -29,13 +30,12 @@ export default {
     };
   },
   methods: {
-    submitForm(){
+    submitForm() {
       event.preventDefault();
-      console.log(this.$store)
-      this.$store.commit('submitted', true);
-    },
+      console.log(this.$store);
+      this.$store.commit("submitted", true);
+    }
   },
-  mounted(){
-  }
+  mounted() {}
 };
 </script>
