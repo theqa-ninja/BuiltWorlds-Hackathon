@@ -2,9 +2,10 @@
   <section class="home">
     <h1>{{ heading }}</h1>
     <form action="/something" method="post" @submit="submitForm" novalidate="true" class="form">
-      <label for="fileToUpload">Redirect</label>
+      <label for="fileToUpload">Import from BIM360</label>
       <p>
-        <input type="submit" name="submit" value="Go!" class="button" />
+        <a href="/api/autodesk/signin/"
+        <input type="submit" name="submit" value="Redirect" class="button" />
       </p>
       <hr />
       <label for="url">Enter Session ID</label>
