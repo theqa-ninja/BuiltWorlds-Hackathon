@@ -24,7 +24,6 @@
         <img
           v-lazyload
           v-for="image in imageJson"
-          v-if="!image.deleted"
           src
           :data-src="image.download_url"
           alt
@@ -47,7 +46,7 @@ export default {
         "Here are the images you uploaded. Please select the ones you want to remove.",
       url: "Or upload from URL:",
       remove: "Remove",
-      cluteredImages: [],
+      clusteredImages: [],
       currentCluster: null,
       clusterNum: 9,
       counter: 0,
@@ -78,21 +77,19 @@ export default {
     },
     deleteImages: function(item) {
       document.querySelector("#gallery").classList.toggle("hide-others");
-      var selected = document.querySelectorAll(".selected");
-      debugger
-      Array.prototype.forEach.call(selected, function(el, i) {
-        el.parentNode.removeChild(el);
-      });
-
-      // let newImages = [];
-      // this.imageJson = this.imageJson.forEach((image)=>{
-      //   if (image['selected'] === false){
-      //     newImages.push(image);
-      //   }
+      // var selected = document.querySelectorAll(".selected");
+      // debugger
+      // Array.prototype.forEach.call(selected, function(el, i) {
+      //   el.parentNode.removeChild(el);
       // });
-      // console.log(newImages)
-      // this.imageJson = newImages;
-      // console.log(this.imageJson)
+
+      let newImages = [];
+      this.imageJson = this.imageJson.forEach((image)=>{
+        if (image['selected'] === false){
+          newImages.push(image);
+        }
+      });
+      this.imageJson = newImages;
       if (this.timerId !== null) {
         clearTimeout(this.timerId);
       }
@@ -110,19 +107,23 @@ export default {
       this.counter = count;
     },
     assignImageToCluster(arr){
-      this.cluteredImages = Array(this.clusterNum);
+      this.clusteredImages = Array(this.clusterNum);
       arr.forEach(elem=>{
-        if (typeof(this.cluteredImages[elem.clusterId]) === 'undefined'){
-          this.cluteredImages[elem.clusterId] = [];
+        if (typeof(this.clusteredImages[elem.clusterId]) === 'undefined'){
+          this.clusteredImages[elem.clusterId] = [];
         }
-        this.cluteredImages[elem.clusterId].push(elem);
+        this.clusteredImages[elem.clusterId].push(elem);
       });
     },
     onClusterChange(){
       if (event.target.value === 'None selected' ){
         return;
       }
-      this.imageJson = this.cluteredImages[parseInt(event.target.value)];
+      if (Number.isInteger(this.currentCluster)){
+        this.clusteredImages[this.currentCluster] = this.imageJson;
+      }
+      this.currentCluster = parseInt(event.target.value);
+      this.imageJson = this.clusteredImages[this.currentCluster];
       this.counter = this.countSelectedItems();
     }
   },
