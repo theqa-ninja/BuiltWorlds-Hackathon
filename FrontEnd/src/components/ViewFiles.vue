@@ -22,8 +22,8 @@
       <p v-show="deleted" class="deleted hide">Removed From Current Set!</p>
       <div class="inner">
         <span class="image-wrapper" v-for="image in imageJson" :id="image['_id']">
-          <button class="enlarge" @click="enlargeImage(image)">+</button>
-          <button class="close" @click="closeImage(image)">&times;</button>
+          <button class="enlarge" @click="enlargeImage(image)" title="enlarge">+</button>
+          <button class="close" @click="closeImage(image)" title="close">&times;</button>
           <img
             v-lazyload
             src
