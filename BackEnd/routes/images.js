@@ -24,9 +24,9 @@ router.get('/session/:session_id', async (req, res, next) => {
     var temp = await images.findAll({
       where: {
         session_id: sid
-      }
+      },
+      order: [ 'cluster_id', 'created_at' ]
     });
-    res.status(200);
     if (temp == null)
       res.json(sid + " is not a valid session id");
     else
