@@ -50,7 +50,7 @@ export default {
     return {
       heading: "View files",
       msg:
-        "Here are the images you uploaded. Please select the ones you want to view.",
+        'Here are the images you uploaded. Please select the ones you want to keep. You may view larger versions of each image by clicking on the "+" button.',
       url: "Or upload from URL:",
       remove: "Remove",
       clusteredImages: [],
