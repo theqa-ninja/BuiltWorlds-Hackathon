@@ -34,4 +34,26 @@ router.get('/:cluster_id', async (req, res, next) => {
   }
 });
 
+// ../clusters/session/:session_id
+router.get('/session/:session_id', async (req, res, next) => {
+  try
+  {
+    var sid = req.params.session_id;
+    var temp = await images.findAll({
+      where: {
+        session_id: sid,
+      },
+      order: [ 'cluster_id', 'created_at' ]
+    });
+    if (temp == null)
+      res.json(sid + " is not a valid session id");
+    else
+      res.json(temp);
+  }
+  catch (ex)
+  {
+    return next(ex);
+  }
+});
+
 export default router;

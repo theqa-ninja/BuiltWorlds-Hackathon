@@ -38,6 +38,28 @@ router.get('/session/:session_id', async (req, res, next) => {
   }
 });
 
+// ../cluster/:cluster_id
+router.get('/cluster/:cluster_id', async (req, res, next) => {
+  try
+  {
+    var sid = req.params.cluster_id;
+    var temp = await images.findAll({
+      where: {
+        cluster_id: sid
+      },
+      order: [ 'cluster_id', 'created_at' ]
+    });
+    if (temp == null)
+      res.json(sid + " is not a valid cluster id");
+    else
+      res.json(temp);
+  }
+  catch (ex)
+  {
+    return next(ex);
+  }
+});
+
 // ../images/:image_id
 router.get('/:image_id', async (req, res, next) => {
   try
