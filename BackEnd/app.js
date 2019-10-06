@@ -25,11 +25,11 @@ app.use(function (req, res, next) {
 
   if(env == 'development') {
     req.session.credentials['autodesk'] = {
-      access_token: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJ1c2VyaWQiOiJKN1FVSjVUTjhTQVQiLCJleHAiOjE1NzAzODM2NDksInNjb3BlIjpbInVzZXItcHJvZmlsZTpyZWFkIiwiZGF0YTpzZWFyY2giLCJkYXRhOnJlYWQiLCJidWNrZXQ6cmVhZCIsImFjY291bnQ6cmVhZCIsInZpZXdhYmxlczpyZWFkIl0sImNsaWVudF9pZCI6ImFVakdBR1FKdlc0ak9qQXA3RHQ0bEFNRVB6Q2ZxYll1IiwiZ3JhbnRfaWQiOiJVdzRraXlPVUlHWGFYeWFVZWlhVjBUTzFRUVB5MFRsbCIsImF1ZCI6Imh0dHBzOi8vYXV0b2Rlc2suY29tL2F1ZC9qd3RleHA2MCIsImp0aSI6IkhPZUZiZllUM296NGVBWkhtSUFIUmUxOTkyMFdWakdZRXBYN3dBOUJCZmFtbXVwanl4NkZibHNoWlZjRVRtZnAifQ.vUA8AoF6b3rEud5C9HzKgG0SenMUXaSLe98m2XqXjhE',
-      refresh_token: 'yxkok9OUuBw4w0nm065RbsobmScbp07vXGt1MCamZ9',
-      token_type: 'Bearer',
-      expires_in: 3599,
-      expires_at: '2019-10-06T17:40:48.706Z'
+      access_token: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJ1c2VyaWQiOiJKN1FVSjVUTjhTQVQiLCJleHAiOjE1NzAzODg0MDUsInNjb3BlIjpbInVzZXItcHJvZmlsZTpyZWFkIiwiZGF0YTpzZWFyY2giLCJkYXRhOnJlYWQiLCJidWNrZXQ6cmVhZCIsImFjY291bnQ6cmVhZCIsInZpZXdhYmxlczpyZWFkIl0sImNsaWVudF9pZCI6ImFVakdBR1FKdlc0ak9qQXA3RHQ0bEFNRVB6Q2ZxYll1IiwiZ3JhbnRfaWQiOiJmSElFWk1wNmxoM0JRTTFGZjNzcDVwN3ZzVGJENXYxMiIsImF1ZCI6Imh0dHBzOi8vYXV0b2Rlc2suY29tL2F1ZC9qd3RleHA2MCIsImp0aSI6InRESFA1WXJDS3VRNFJKQzBUMDB2bGFrSlRYc3BLWEloVmg5amdwQ3pBN056WDFPS0ZXNnE5Z1RwejliMUZNWVkifQ.TUC39PzjlQj6nmV2kfIFRxyqsitGpGgsnUb3rrndB3I',
+  refresh_token: '8zRg0XIlYmRpalmrG9FRCMUMJ3oiMvCRBUmW0WsLlY',
+  token_type: 'Bearer',
+  expires_in: 3599,
+  expires_at: '2019-10-06T19:00:04.370Z'
     }
   }
   next()

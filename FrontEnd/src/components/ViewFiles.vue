@@ -123,6 +123,7 @@ export default {
         }
         this.clusteredImages[elem.clusterId].push(elem);
       });
+      console.log(this.clusteredImages);
     },
     onClusterChange() {
       if (event.target.value === "None selected") {
@@ -139,14 +140,18 @@ export default {
   async mounted() {
     const sessionId = this.$store.getters.sessionId;
     let url = "/api/images/session/" + sessionId;
-    debugger;
-    const result = await axios.get(url);
+
+    const tokenResponse = await axios.get('/api/autodesk/token');
+    const token = tokenResponse.data['access_token'];
+    const response = await axios.get(url);
+    const result = response.data;
     let clusterIds = [];
     result.forEach(image=>{
-      if (clusterIds.includes(image['cluster_id']) && image['cluster_id']){
+      if (!clusterIds.includes(image['cluster_id']) && image['cluster_id']){
         clusterIds.push(image['cluster_id'])
       }
-    })
+    });
+    console.log(clusterIds)
     // sort clusterIds
     clusterIds.sort();
     clusterIds.reverse();
@@ -163,8 +168,25 @@ export default {
       images[i] = [];
     }
 
+    const promises = [];
+
     let count = 0;
-    result.forEach(image => {
+    result.forEach(async image => {
+
+      const updateImage = async (image, token) => {
+        const response = await axios.get(image.url, {
+          responseType: 'arraybuffer',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        console.log(token);
+        const data = new Buffer(response.data, 'binary').toString('base64');
+        image.download_url = `data:image/jpeg;charset=utf-8;base64,${data}`;
+      }
+      const promise = updateImage(image, token);
+      promises.push(promise);
+      await promise;
       image["image_id"] = "img" + count;
       count++;
       image["selected"] = false;
@@ -173,11 +195,13 @@ export default {
       if (!image['cluster_id']) {
         image["clusterId"] = 0;
       } else {
-        image["clusterId"] = clusterIdToIndex[image['cluster_id']];
+        image["clusterId"] = clusterIds.indexOf(image['cluster_id']);
+
       }
     });
 
-      this.assignImageToCluster(json);
+    await Promise.all(promises);
+      this.assignImageToCluster(result);
   }
 };
 </script>
