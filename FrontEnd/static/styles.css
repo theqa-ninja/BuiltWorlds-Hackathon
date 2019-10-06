@@ -3,7 +3,7 @@
 }
 
 body {
-    border-top: 10px solid #42b983;
+    box-shadow: inset 0px 10px 0px 0  #42b983;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -252,11 +252,10 @@ input[type="text"]:focus {
     text-align: center;
     color: #2c3e50;
     line-height: 1.6;
-    margin-top: 60px;
-    padding: 0 0 200px;
+    padding: 60px 0 200px;
     background: url(skyline.svg) center bottom no-repeat;
     border-bottom: 2px solid #42b983;
-    min-height: 92.4%;
+    min-height: 100%;
 }
 
 .hide {
