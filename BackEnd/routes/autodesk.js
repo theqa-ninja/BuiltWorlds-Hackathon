@@ -38,6 +38,12 @@ router.get('/callback', (req, res) => {
     });
 });
 
+router.get('/token', (req, res) => {
+  const credentials = req.session.credentials['autodesk'];
+
+  res.json({access_token: credentials['access_token']});
+});
+
 /**
  * Given a token this will return a list of hubs that
  * token has access to.
@@ -148,7 +154,7 @@ router.get('/project/:project_id/item/:item_id', (req, res) => {
  * the images back to the client.
  */
 router.get('/project/:project_id/item/:item_id/thumbnail', (req, res, next) => {
-  const ItemsApi = new ForgeSDK.ItemsApi();
+  const DerivativesApi = new ForgeSDK.DerivativesApi();
   const credentials = req.session.credentials['autodesk'];
 
   const projectId = req.params['project_id'];
