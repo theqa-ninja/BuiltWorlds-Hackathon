@@ -24,8 +24,9 @@ router.get('/:cluster_id', async (req, res, next) => {
     var temp = await clusters.findByPk();
     res.status(200);
     if (temp == null)
-      res.json(cluster_id + " is not a valid cluster id")
-    res.json(temp);
+      res.json(cluster_id + " is not a valid cluster id");
+    else
+      res.json(temp);
   }
   catch (ex)
   {

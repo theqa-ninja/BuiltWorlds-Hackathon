@@ -24,8 +24,9 @@ router.get('/:image_id', async (req, res, next) => {
     var temp = await images.findByPk(image_id);
     res.status(200);
     if (temp == null)
-      res.json(image_id + " is not a valid image id")
-    res.json(temp);
+      res.json(image_id + " is not a valid image id");
+    else
+      res.json(temp);
   }
   catch (ex)
   {
