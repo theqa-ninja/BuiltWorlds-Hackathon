@@ -4,16 +4,19 @@
     "password": "QArocks",
     "database": "bwhack_dev",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "baseurl": "http://localhost:3000"
   },
   "test": {
     "username": "bwhacker",
     "password": "QArocks",
     "database": "bwhack_test",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "baseurl": "http://localhost:3000"
   },
   "production": {
-    "use_env_variable": "DATABASE_URL"
+    "use_env_variable": "DATABASE_URL",
+    "baseurl": "https://builtworldhack-back.herokuapp.com"
   }
 }

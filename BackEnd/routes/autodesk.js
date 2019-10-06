@@ -3,6 +3,9 @@ import ForgeSDK from 'forge-apis';
 import { processImages } from '../services';
 import axios from 'axios';
 
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.json')[env];
+
 const AUTODESK_CLIENT_ID = process.env.AUTODESK_CLIENT_ID
 const AUTODESK_CLIENT_SECRET = process.env.AUTODESK_CLIENT_SECRET
 const AUTODESK_REDIRECT_URL = process.env.AUTODESK_REDIRECT_URL
@@ -100,7 +103,7 @@ router.get('/project/:project_id/folder/:folder_id', (req, res) => {
       const itemsData = contents.body['data'];
       const items = itemsData.
         map((d) => {
-          const link = `http://localhost:3000/api/autodesk/project/${projectId}/item/${d['id']}/thumbnail`;
+          const link = `${config.baseurl}/api/autodesk/project/${projectId}/item/${d['id']}/thumbnail`;
           return {
             link: link,
             name: d['attributes']['displayName'],
