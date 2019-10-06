@@ -1,5 +1,3 @@
-import axios from 'axios';
-import asyncPool from "tiny-async-pool";
 import { ExifImage } from 'exif';
 
 const exifImage = (image) => {
@@ -33,76 +31,24 @@ const parseGPS = (gpsExif) => {
   return {
     longitude: convertDMSToDD(gpsExif.GPSLongitude, gpsExif.GPSLongitudeRef),
     latitude: convertDMSToDD(gpsExif.GPSLatitude, gpsExif.GPSLatitudeRef),
-    altitude: gpsExif.GPSAltitude - gpsExif.GPSAltitudeRef
+    altitude: gpsExif.GPSAltitude - gpsExif.GPSAltitudeRef ? gpsExif.GPSAltitudeRef : 0
   }
 }
 
-const extractExifs = async (urls, token=null) => {
-  const extractLLA = async (url) => {
-    const exif = new Exif(url, token);
-    return await exif.extractGPSAsArray();
-  };
-
-  return await asyncPool(3, urls, extractLLA);
-}
-
-class Exif {
-  constructor(url, token=null) {
-    this.url = url;
-    this.token = token;
-  }
-
-  async extractGPS() {
-    if (this.lla)
-      return this.lla;
-
-    try {
-      const exif = await this._fetchImage();
-      if (exif && exif.gps && 'GPSLatitude' in exif.gps && 'GPSLongitude' in exif.gps && 'GPSAltitude' in exif.gps) {
-        this.lla =  parseGPS(exif.gps);
-        return this.lla;
-      }
-      return null;
-    } catch (e) {
-      console.error(e);
-      return null;
-    }
-  }
-
-  async extractGPSAsArray() {
-    const lla = await this.extractGPS();
-
-    if (lla) {
+const extractGPSAsArray = async (image) => {
+  try {
+    const exif = await exifImage(image);
+    if (exif && exif.gps && 'GPSLatitude' in exif.gps && 'GPSLongitude' in exif.gps && 'GPSAltitude' in exif.gps) {
+      const lla = parseGPS(exif.gps);
       return [lla.latitude, lla.longitude, lla.altitude];
     }
     return null;
-
-  }
-
-  async _fetchImage() {
-    try {
-      const headers = {
-        // 'Range': 'bytes=0-100'
-      };
-
-      if (this.token)
-        headers['Authorization'] = `bearer ${this.token}`;
-
-      const response = await axios.get(this.url, {
-        responseType: 'arraybuffer',
-        headers
-      });
-
-      this.image = response.data;
-      this.exif = await exifImage(this.image);
-      return this.exif;
-    } catch (e) {
-      throw e;
-    }
+  } catch (e) {
+    console.error(e);
+    return null;
   }
 }
 
 export {
-  Exif,
-  extractExifs
+  extractGPSAsArray
 };

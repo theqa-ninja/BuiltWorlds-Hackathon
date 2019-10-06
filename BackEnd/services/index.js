@@ -1,6 +1,7 @@
-import { Exif, extractExifs } from './exif';
+import { extractGPSAsArray } from './exif';
+import processImages from './process';
 
 export {
-  Exif,
-  extractExifs
+  extractGPSAsArray,
+  processImages
 }
