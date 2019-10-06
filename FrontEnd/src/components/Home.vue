@@ -6,18 +6,20 @@
       <p>
         <input type="file" name="fileToUpload" id="fileToUpload" />
       </p>
+      <hr />
       <label for="url">{{ url }}</label>
       <p>
-        <input type="text" name="url" />
+        <input type="text" name="url" placeholder="https://" />
       </p>
       <p>
-        <input type="submit" name="submit" value="submit" class="button" />
+        <input type="submit" name="submit" value="Go!" class="button" />
       </p>
     </form>
   </section>
 </template>
 
 <script>
+import store from "./store";
 export default {
   name: "Home",
   data() {
@@ -28,14 +30,11 @@ export default {
     };
   },
   methods: {
-    submitForm: function(msg, e) {
-      e.preventDefault();
-      debugger;
-      console.log(msg);
-      document.querySelector("home").classList.add("hide");
-      document.querySelector("view-files").classList.remove("hide");
-      return false;
+    submitForm() {
+      event.preventDefault();
+      this.$store.commit("submitted", true);
     }
-  }
+  },
+  mounted() {}
 };
 </script>

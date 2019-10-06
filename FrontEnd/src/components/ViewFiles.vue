@@ -2,18 +2,34 @@
   <section class="view-files">
     <h1>{{ heading }}</h1>
     <p>{{ msg }}</p>
+    <div class="select-wrapper">
+      <form>
+        <select v-model="selected" class="select-menu">
+          <!-- inline object literal -->
+          <option v-for="cluster in clusters" :value="cluster.value">{{ cluster.text }}</option>
+        </select>
+      </form>
+      <button class="button" @click="hideNotSelected">Toggle select</button>
+    </div>
     <p>
-      <input type="submit" class="button" />
+      <span class="counter">{{ counter }} images</span>
     </p>
     <div id="gallery">
-      <img
-        v-for="image in imageJson"
-        :src="image.download_url"
-        v-show="!image.selected"
-        alt
-        class="img"
-        @click="clickHandler(image)"
-      />
+      <p>
+        <button class="button delete" @click="deleteImages">Delete</button>
+      </p>
+      <p v-show="deleted" class="deleted hide">Deleted!</p>
+      <div class="inner">
+        <img
+          v-lazyload
+          v-for="image in imageJson"
+          src
+          :data-src="image.download_url"
+          alt
+          class="img"
+          @click="clickHandler(image)"
+        />
+      </div>
     </div>
   </section>
 </template>
@@ -28,13 +44,48 @@ export default {
         "Here are the images you uploaded. Please select the ones you want to remove.",
       url: "Or upload from URL:",
       remove: "Remove",
-      imageJson: null
+      imageJson: [],
+      counter: 0,
+      deleted: "Deleted!",
+      imageJson: [],
+      clusters: [
+        { text: "Cluster 1", value: "cluster-1" },
+        { text: "Cluster 2", value: "cluster-2" },
+        { text: "Cluster 3", value: "cluster-3" }
+      ],
+      selected: null,
+      timerId: null
     };
   },
   methods: {
-    clickHandler: function(item) {
+    clickHandler(item) {
       item.selected = !item.selected;
       event.target.classList.toggle("selected");
+      this.countSelectedItems();
+    },
+    hideNotSelected(item) {
+      document.querySelector("#gallery").classList.toggle("hide-others");
+    },
+    deleteImages: function(item) {
+      document.querySelector("#gallery").classList.toggle("hide-others");
+      var selected = document.querySelectorAll(".selected");
+      Array.prototype.forEach.call(selected, function(el, i) {
+        el.parentNode.removeChild(el);
+      });
+      if (this.timerId !== null) {
+        clearTimeout(this.timerId);
+      }
+      this.deleted = true;
+      this.timerId = setTimeout(() => {
+        this.deleted = false;
+      }, 2000);
+    },
+    countSelectedItems() {
+      let count = 0;
+      this.imageJson.forEach(image => {
+        count += image.selected;
+      });
+      this.counter = count;
     }
   },
   mounted() {
