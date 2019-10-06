@@ -2,9 +2,15 @@
   <section class="view-files">
     <h1>{{ heading }}</h1>
     <p>{{ msg }}</p>
-    <p>
+    <div class="select-wrapper">
+      <form>
+        <select v-model="selected" class="select-menu">
+          <!-- inline object literal -->
+          <option v-for="cluster in clusters" :value="cluster.value">{{ cluster.text }}</option>
+        </select>
+      </form>
       <button class="button" @click="hideNotSelected">Toggle Select</button>
-    </p>
+    </div>
     <p>
       <span class="counter">{{ counter }}</span>
     </p>
@@ -42,13 +48,18 @@ export default {
       counter: 0,
       deleted: "Deleted!",
       imageJson: [],
-      counter: 0
+      counter: 0,
+      clusters: [
+        { text: "Cluster 1", value: "cluster-1" },
+        { text: "Cluster 2", value: "cluster-2" },
+        { text: "Cluster 3", value: "cluster-3" }
+      ],
+      selected: null
     };
   },
   methods: {
     clickHandler(item) {
       item.selected = !item.selected;
-      console.log(item.selected);
       event.target.classList.toggle("selected");
       this.countSelectedItems();
     },
@@ -58,7 +69,6 @@ export default {
     deleteImages: function(item) {
       document.querySelector("#gallery").classList.toggle("hide-others");
       var selected = document.querySelectorAll(".selected");
-      console.log(selected);
       Array.prototype.forEach.call(selected, function(el, i) {
         el.parentNode.removeChild(el);
       });

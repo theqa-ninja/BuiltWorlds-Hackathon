@@ -111,6 +111,17 @@ a {
     animation-iteration-count: 1;
 }
 
+.select-wrapper form {
+    display: inline-block;
+    width: 50%;
+}
+
+.select-menu {
+    padding: .6rem;
+    font-size: 1rem;
+    width: 100%;
+}
+
 @keyframes showhide {
     from {
         color: #222;
