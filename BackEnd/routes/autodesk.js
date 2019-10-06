@@ -107,6 +107,7 @@ router.get('/project/:project_id/folder/:folder_id', (req, res) => {
           return {
             link: link,
             name: d['attributes']['displayName'],
+            project: projectId,
             id: d['id']
           }
       });
