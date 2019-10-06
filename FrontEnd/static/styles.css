@@ -234,14 +234,24 @@ input[type="text"]:focus {
         column-count: 4;
     }
 }
-
+@media (max-width: 750px) {
+    #gallery .inner {
+        column-count: 3;
+    }
+}
 @media (max-width: 600px) {
     html {
         font-size: 14px;
     }
 
     #gallery .inner {
-        column-count: 3;
+        column-count: 2;
+    }
+}
+
+@media (max-width: 400px) {
+    #gallery .inner {
+        column-count: 1;
     }
 }
 
