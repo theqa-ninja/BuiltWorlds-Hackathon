@@ -160,7 +160,9 @@ section {
 }
 
 #gallery.hide-others .delete {
-    display: inline-block;
+    display: block;
+    margin: auto;
+    width: 100px;
 }
 
 #gallery.hide-others .image-wrapper {
