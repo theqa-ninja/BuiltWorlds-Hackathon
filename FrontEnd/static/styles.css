@@ -110,7 +110,7 @@ section {
     vertical-align: top;
 }
 
-#gallery .selected {
+#gallery .selected img {
     background: yellow;
     border: 1px solid #fff;
     transition: all 1s ease;
@@ -129,6 +129,7 @@ section {
 #gallery .deleted {
     color: transparent;
     padding: .5rem 1rem;
+    text-align: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -165,15 +166,17 @@ section {
 }
 
 #gallery.hide-others .delete {
-    display: inline-block;
+    display: block;
+    margin: auto;
+    width: 100px;
 }
 
-#gallery.hide-others .img {
+#gallery.hide-others .image-wrapper {
     display: none;
 }
 
 #gallery.hide-others .selected {
-    display: inline;
+    display: inline-block;
 }
 
 input[type="text"] {
