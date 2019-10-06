@@ -2,7 +2,7 @@
   <section class="home">
     <h1>{{ heading }}</h1>
     <form action="/something" method="post" @submit="submitForm" novalidate="true" class="form">
-      <label for="fileToUpload">Import from BIM360</label>
+      <label for="fileToUpload">Redirect</label>
       <p>
         <input type="submit" name="submit" value="Go!" class="button" />
       </p>
