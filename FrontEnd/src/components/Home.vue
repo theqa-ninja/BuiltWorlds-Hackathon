@@ -32,7 +32,6 @@ export default {
   methods: {
     submitForm() {
       event.preventDefault();
-      console.log(this.$store);
       this.$store.commit("submitted", true);
     }
   },
