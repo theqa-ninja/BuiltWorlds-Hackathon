@@ -78,7 +78,22 @@ section {
     column-count: 5;
     column-gap: 0;
 }
-
+#gallery .image-wrapper {
+    display: inline-block;
+    position: relative;
+}
+#gallery .enlarge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255, .9);
+    border: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 0px;
+    font-size: 1rem;
+    cursor: pointer;
+}
 #gallery .img {
     width: 100%;
     height: auto;
@@ -228,4 +243,46 @@ input[type="text"]:focus {
     #gallery .inner {
         column-count: 3;
     }
+}
+
+/* lightbox */
+.close {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255, .9);
+    border: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 0px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+#gallery :target {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,.8);
+    z-index: 10;
+}
+#gallery :target .enlarge {
+    display: none;
+}
+#gallery :target .close {
+    display: block;
+    font-size: 2rem;
+}
+#gallery :target img {
+    width: auto;
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
