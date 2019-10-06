@@ -1,6 +1,11 @@
 <template>
   <main id="app">
-    <img src="./assets/logo.svg" class="logo" />
+    <header>
+      <img src="./assets/logo.svg" class="logo" />
+      <h1>Cullinary</h1>
+      <p class="tagline">Chopping down your image workload</p>
+    </header>
+
     <Home v-if="!submitted"></Home>
     <clusters v-if="submitted"></clusters>
   </main>
