@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: "ViewFiles",
   data() {
@@ -145,6 +146,7 @@ export default {
         }
         this.clusteredImages[elem.cluster_id].push(elem);
       });
+      console.log(this.clusteredImages);
     },
     onClusterChange() {
       if (event.target.value === "None selected") {

@@ -11,7 +11,7 @@
       <hr />
       <label for="url">Enter Session ID</label>
       <p>
-        <input type="text" name="url" placeholder />
+        <input id='sessionIdInput' type="text" name="url" placeholder="" />
       </p>
       <p>
         <input type="submit" name="submit" value="Go!" class="button" />
@@ -34,6 +34,9 @@ export default {
   methods: {
     submitForm() {
       event.preventDefault();
+      const sessionId = Number.parseInt(document.getElementById('sessionIdInput').value);
+      debugger
+      this.$store.commit('sessionId', sessionId);
       this.$store.commit("submitted", true);
     }
   },
