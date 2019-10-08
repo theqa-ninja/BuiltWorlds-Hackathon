@@ -174,7 +174,6 @@ export default {
       vueComp.assignImageToCluster(json);
     };
     xhr.onerror = "error";
-    console.log(xhr.status);
     xhr.send();
   }
 };
