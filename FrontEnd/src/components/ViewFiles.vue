@@ -35,7 +35,7 @@
           <img
             v-lazyload
             src
-            :data-src="/static/images/${image.filename}"
+            data-src="/static/images/${image.filename}"
             alt
             class="img"
             @click="clickHandler(image)"
@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: "ViewFiles",
   data() {
