@@ -4,22 +4,22 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    submitted: false,    
+    submitted: false,
     sessionId: null,
   },
   getters: {
-    submitted: (state)=>{
+    submitted: (state) => {
       return state.submitted;
     },
-    sessionId: (state)=>{
+    sessionId: (state) => {
       return state.sessionId;
     },
   },
   mutations: {
-    submitted (state, payload) {
+    submitted(state, payload) {
       state.submitted += payload
     },
-    sessionId (state, payload) {
+    sessionId(state, payload) {
       state.sessionId += payload
     },
   }
