@@ -4,8 +4,9 @@
     <form action="/something" method="post" @submit="submitForm" novalidate="true" class="form">
       <label for="fileToUpload">Import from BIM360</label>
       <p>
-        <a class='quickref' href="/api/autodesk/signin/"></a>
-        <input type="submit" name="submit" value="Redirect" class="button" />
+        <a href="/api/autodesk/signin/">
+          <input type="submit" name="submit" value="Redirect" class="button" />
+        </a>
       </p>
       <hr />
       <label for="url">Enter Session ID</label>
